@@ -6,12 +6,32 @@
 
 package easybox;
 
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.TransferHandler;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.TransferHandler;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -25,6 +45,7 @@ public class examinarRuta extends javax.swing.JFrame {
     public examinarRuta() {
         initComponents();
         setResizable(false);
+        modifyFile();
     }
 
     @SuppressWarnings("unchecked")
@@ -106,16 +127,43 @@ public class examinarRuta extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnClose)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptPath, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAceptPath, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void modifyFile(){
+        TransferHandler th = new TransferHandler(){
+            @Override
+            public boolean canImport(JComponent comp, DataFlavor[] trasferFlavors){
+                return true;
+            }
+            @Override
+            public boolean importData(JComponent comp, Transferable t){
+                try{
+                    List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
+                    if(files.size()==1)
+                     {
+                         File f = files.get(0);
+                         txtFilePath.setText(f.getAbsolutePath());
+                     }
+                }catch(UnsupportedFlavorException ex) {
+                    System.out.println("Bitch 1");
+                }catch(IOException ex) {
+                    System.out.println("Bitch 2");
+                }
+                return true;
+            }
+        };
+        dragZone.setTransferHandler(th);
+    }
+    
     private void btnAceptPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptPathActionPerformed
         
        
