@@ -35,9 +35,10 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        kButton1 = new keeptoo.KButton();
-        kButton2 = new keeptoo.KButton();
-        kButton3 = new keeptoo.KButton();
+        btnAddGame = new keeptoo.KButton();
+        btnShowGames = new keeptoo.KButton();
+        btnExit = new keeptoo.KButton();
+        btnPreferences = new keeptoo.KButton();
         jPanel2 = new javax.swing.JPanel();
         scrollPanel = new javax.swing.JScrollPane();
         biblioteca1 = new easybox.Biblioteca();
@@ -60,30 +61,39 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        kButton1.setText("Añadir Juego");
-        kButton1.setkEndColor(new java.awt.Color(153, 0, 153));
-        kButton1.setkStartColor(new java.awt.Color(102, 204, 255));
-        kButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddGame.setText("Añadir Juego");
+        btnAddGame.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnAddGame.setkStartColor(new java.awt.Color(102, 204, 255));
+        btnAddGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton1ActionPerformed(evt);
+                btnAddGameActionPerformed(evt);
             }
         });
 
-        kButton2.setText("Mis Juegos");
-        kButton2.setkEndColor(new java.awt.Color(153, 0, 153));
-        kButton2.setkStartColor(new java.awt.Color(102, 204, 255));
-        kButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnShowGames.setText("Mis Juegos");
+        btnShowGames.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnShowGames.setkStartColor(new java.awt.Color(102, 204, 255));
+        btnShowGames.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton2ActionPerformed(evt);
+                btnShowGamesActionPerformed(evt);
             }
         });
 
-        kButton3.setText("Preferencias");
-        kButton3.setkEndColor(new java.awt.Color(153, 0, 153));
-        kButton3.setkStartColor(new java.awt.Color(102, 204, 255));
-        kButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("SALIR");
+        btnExit.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnExit.setkStartColor(new java.awt.Color(102, 204, 255));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton3ActionPerformed(evt);
+                btnExitActionPerformed(evt);
+            }
+        });
+
+        btnPreferences.setText("Preferencias");
+        btnPreferences.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnPreferences.setkStartColor(new java.awt.Color(102, 204, 255));
+        btnPreferences.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreferencesActionPerformed(evt);
             }
         });
 
@@ -94,24 +104,27 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddGame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnShowGames, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPreferences, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(182, 182, 182)
-                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnShowGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnAddGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnPreferences, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 550));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -139,9 +152,9 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
+    private void btnAddGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kButton1ActionPerformed
+    }//GEN-LAST:event_btnAddGameActionPerformed
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         // TODO add your handling code here:
@@ -152,14 +165,18 @@ public class Home extends javax.swing.JFrame {
         new Drag(jPanel1).onPress(evt);
     }//GEN-LAST:event_jPanel1MouseDragged
 
-    private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
+    private void btnShowGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowGamesActionPerformed
         // TODO add your handling code here:
         jPanel2.setVisible(true);
-    }//GEN-LAST:event_kButton2ActionPerformed
+    }//GEN-LAST:event_btnShowGamesActionPerformed
 
-    private void kButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton3ActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnPreferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreferencesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kButton3ActionPerformed
+    }//GEN-LAST:event_btnPreferencesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,11 +215,12 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private easybox.Biblioteca biblioteca1;
+    private keeptoo.KButton btnAddGame;
+    private keeptoo.KButton btnExit;
+    private keeptoo.KButton btnPreferences;
+    private keeptoo.KButton btnShowGames;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private keeptoo.KButton kButton1;
-    private keeptoo.KButton kButton2;
-    private keeptoo.KButton kButton3;
     private javax.swing.JScrollPane scrollPanel;
     // End of variables declaration//GEN-END:variables
 }
