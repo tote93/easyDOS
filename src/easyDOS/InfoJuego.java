@@ -282,7 +282,9 @@ public class InfoJuego extends javax.swing.JFrame {
 		if (play) {
                 try {
                     String url = getClass().getClassLoader().getResource("./dosBOX/DOSBoxPortable.exe").getPath();
-                    url  = url +" " +_juego.getUrl();                    
+                    url  = url +" " +_juego.getUrl();
+                    url = url.substring(1, url.length());
+                    url=url.replace("/", "\\");
                     Runtime.getRuntime().exec(url); 
                         } catch (IOException ioe) {
                                 System.out.println (ioe);
