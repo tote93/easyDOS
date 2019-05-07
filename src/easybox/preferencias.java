@@ -487,7 +487,7 @@ public class preferencias extends javax.swing.JFrame {
         btnRenderNormal.setBackground(Color.red);
         btnRenderDir.setBackground(Color.red);
         btnRenderOpen.setBackground(Color.green);
-        output="surface";
+        output="opengl";
     }//GEN-LAST:event_btnRenderOpenActionPerformed
 
     private void btnRenderDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenderDirActionPerformed
@@ -501,7 +501,7 @@ public class preferencias extends javax.swing.JFrame {
         btnRenderNormal.setBackground(Color.green);
         btnRenderDir.setBackground(Color.red);
         btnRenderOpen.setBackground(Color.red);
-        output="opengl";
+        output="surface";
     }//GEN-LAST:event_btnRenderNormalActionPerformed
 
     private void btnAcceptChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptChangesActionPerformed
@@ -519,24 +519,58 @@ public class preferencias extends javax.swing.JFrame {
         file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
         FileReader f = new FileReader(file);
         BufferedReader b = new BufferedReader(f);
-        String cadena = b.readLine();
+        String cadena;
         
         //FICHERO AUXILIAR
            
-        File yourFile = new File("./aux.conf");
-        yourFile.createNewFile(); // if file already exists will do nothing 
-        FileOutputStream oFile = new FileOutputStream(".", false);
+        String url = getClass().getClassLoader().getResource("./dosBOX/Data/settings/").getPath();
+        url = url + "temp.conf";
+        url = url.substring(1, url.length());
 
-        /*
-        while(cadena != null){
+            File file2 = new File(url);
+            file2.createNewFile();
+        
+        FileWriter fw = new FileWriter(file2);
+        
+        String[] parts;
+        
+        while((cadena = b.readLine()) != null){
             
-            f2.append(cadena);
+            parts=cadena.split("=");
+            if(parts[0].equals("fullscreen"))
+            {
+                fw.append("fullscreen="+fullscreen+"\n");
+            }
+            else if(parts[0].equals("sensitivity"))
+            {
+                fw.append("sensitivity="+Integer.toString(sensitivity)+"\n");
+            }
+            else if(parts[0].equals("core"))
+            {
+                fw.append("core="+core+"\n");
+            }
+            else if(parts[0].equals("output"))
+            {
+                fw.append("output="+output+"\n");
+            }
+            else
+            {
+                fw.append(cadena+"\n");
+            }
             
-            System.out.println(cadena);
-            cadena = b.readLine();
         }
+        
         b.close();
-        */
+        fw.close();
+        
+        File antiguo= new File(file);
+        antiguo.delete();
+        
+        File nuevo = new File(url);
+        boolean success = nuevo.renameTo(antiguo);
+
+        
+      
     }
     
     /**
