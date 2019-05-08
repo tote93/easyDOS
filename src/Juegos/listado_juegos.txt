@@ -34,3 +34,9 @@ Micro League
 Acción
 Brutal juego que acción inspirado en las peliculas de Alien y la acción de los arcades de la época.
 /img/alienbreedcover.jpg
+Corridor 7 (1994)
+Capstone LTD
+Capstone
+Shooter
+Juego de acción y ciencia ficcion en el que recorreremos laberintos infestados de alienígenas.
+/img/corr7cover.jpg
