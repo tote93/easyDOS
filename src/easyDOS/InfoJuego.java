@@ -6,6 +6,7 @@
 
 package easyDOS;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -26,40 +27,43 @@ import javax.swing.ImageIcon;
  */
 public class InfoJuego extends javax.swing.JFrame {
 	Boolean play = false;
-        Juego _juego = new Juego();
+	Juego _juego = new Juego();
 	/**
 	 * Creates new form test
 	 */
-	public InfoJuego() {            
-            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            this.setLocation(dim.width / 4 - this.getSize().width / 4, dim.height / 4 - this.getSize().height / 4);             
-            initComponents();
+	public InfoJuego() {
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 4 - this.getSize().width / 4, dim.height / 4 - this.getSize().height / 4);
+		initComponents();
 	}
 	public InfoJuego(Juego g, Boolean flag) {
 		initComponents();
 		ImageIcon icon = new ImageIcon(getClass().getResource(g.getImagen()));
 		Caratula.setIcon(icon);
-
 		TextCompany.setText(g.getCompania());
 		TextDesarrollador.setText(g.getDesarrollador());
 		TextNombre.setText(g.getNombre());
 		TextDescripcion.append(g.getDescrip());
+
+		if (flag) {
+			btnPlay.setText("Jugar");
+			btnPlay.setActionCommand("Play");
+			play = true;
+			_juego = g;
+		} else {
+			btnPlay.setText("Añadir a Mis Juegos");
+			btnPlay.setActionCommand("Add");
+			play = false;
+		}
 		if (g.getImagen().equals("/img/AddGameUnknown.png")) {
 			btnPlay.setVisible(false);
 			TextCompany.setEditable(true);
 			TextDesarrollador.setEditable(true);
 			TextDescripcion.setEditable(true);
 			TextNombre.setEditable(true);
-		}
-		if (flag) {
-			btnPlay.setText("Jugar");
-			btnPlay.setActionCommand("Play");
-			play = true;
-                        _juego = g;
-		} else {
-			btnPlay.setText("Añadir a Mis Juegos");
-			btnPlay.setActionCommand("Add");
-			play = false;
+			btnPlay.setText("Añadir nuevo Juego");
+			btnPlay.setActionCommand("AddNuevo");
+			btnPlay.setVisible(true);
 		}
 	}
 
@@ -221,75 +225,88 @@ public class InfoJuego extends javax.swing.JFrame {
 		// TODO add your handling code here:
 		String action = btnPlay.getText();
 		switch (action) {
+		case "Añadir nuevo Juego":
+			AddJuego(true);
+			break;
 		case "Close":
 			this.dispose();
 		case "Jugar":
 			break;
 		case "Añadir a Mis Juegos":
-			AddJuego frameJuego = new AddJuego();
-			frameJuego.setVisible(true);
-			frameJuego.setTitle("Añadir juego " + TextNombre.getText());
-			frameJuego.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			frameJuego.addWindowListener(new WindowListener() {
-				@Override
-				public void windowClosed(WindowEvent e) {
-					//Si se ha cerrado la ventana se comprueba el title
-					if (!frameJuego.getTitle().equals("Error")) {
-
-						//El juego se va a insertar
-						String Nombre = TextNombre.getText();
-						String ruta = frameJuego.getTitle();
-						try {
-							String  fileDefault = getClass().getClassLoader().getResource("./Juegos/default.txt").getPath();
-							try (Writer output = new BufferedWriter(new FileWriter(fileDefault, true))) {
-								output.append(Nombre + "," + ruta + "\n");
-								output.close();
-								btnPlay.setText("Finalizar Configuración");
-								btnPlay.addActionListener(new ActionListener() {
-									@Override
-									public void actionPerformed(ActionEvent e) {
-										finalizar();
-									}
-								});
-							}
-						} catch (IOException ex) {
-							Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
-						}
-					}
-
-				}
-				//Funciones de ventana no usadas para nuestro problema
-				@Override
-				public void windowIconified(WindowEvent e) {}
-				@Override
-				public void windowOpened(WindowEvent e) {}
-				@Override
-				public void windowClosing(WindowEvent e) {}
-				@Override
-				public void windowDeiconified(WindowEvent e) {}
-				@Override
-				public void windowActivated(WindowEvent e) {}
-				@Override
-				public void windowDeactivated(WindowEvent e) {}
-			});
+			AddJuego(false);
 			break;
-
 		}
 	}//GEN-LAST:event_btnPlayMouseClicked
+	void AddJuego(Boolean flag) {
+		AddJuego frameJuego = new AddJuego();
+		frameJuego.setVisible(true);
+		frameJuego.setTitle("Añadir juego " + TextNombre.getText());
+		frameJuego.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		frameJuego.addWindowListener(new WindowListener() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				//Si se ha cerrado la ventana se comprueba el title
+				if (!frameJuego.getTitle().equals("Error")) {
+					//El juego se va a insertar
+					
+					String ruta = frameJuego.getTitle();
+					String  fileDefault = getClass().getClassLoader().getResource("./Juegos/default.txt").getPath();
 
+					btnPlay.setText("Finalizar Configuración");
+					btnPlay.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+                                                    try (Writer output = new BufferedWriter(new FileWriter(fileDefault, true))) { 
+                                                           String Nombre = TextNombre.getText();
+                                                           if(Nombre.equals("") || Nombre.isEmpty() || Nombre.equals(" ")){
+                                                                //eL NOMBRE NO ESTA DEFINIDO
+									TextNombre.setBackground(Color.red);
+									TextNombre.setForeground(Color.white);                                                               
+                                                           }
+                                                           else{
+								output.append(Nombre + "," + ruta + "\n");
+                                                                output.close();                                                               
+                                                                finalizar();                                                           
+                                                           }
+                                                    } catch (IOException ex) {
+                                                        Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
+                                                    }                                                   
+						}
+					});
+
+
+				}
+
+			}
+			//Funciones de ventana no usadas para nuestro problema
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			@Override
+			public void windowClosing(WindowEvent e) {}
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			@Override
+			public void windowActivated(WindowEvent e) {}
+			@Override
+			public void windowDeactivated(WindowEvent e) {}
+		});
+
+	}
 	private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
 		// TODO add your handling code here:
 		if (play) {
-                try {
-                    String url = getClass().getClassLoader().getResource("./dosBOX/DOSBoxPortable.exe").getPath();
-                    url  = url +" " +_juego.getUrl();
-                    url = url.substring(1, url.length());
-                    url=url.replace("/", "\\");
-                    Runtime.getRuntime().exec(url);
-                    dispose();
-                        } catch (IOException ioe) {
-                                System.out.println (ioe);
-                        }
+			try {
+				String url = getClass().getClassLoader().getResource("./dosBOX/DOSBoxPortable.exe").getPath();
+				url  = url + " " + _juego.getUrl();
+				url = url.substring(1, url.length());
+				url = url.replace("/", "\\");
+				Runtime.getRuntime().exec(url);
+				dispose();
+			} catch (IOException ioe) {
+				System.out.println (ioe);
+			}
 		}
 	}//GEN-LAST:event_btnPlayActionPerformed
 	private void finalizar() {

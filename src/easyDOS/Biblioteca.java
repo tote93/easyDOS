@@ -48,16 +48,45 @@ public class Biblioteca extends JPanel {
 		Border margin = new EmptyBorder(2, 2, 2, 2);
 		label.setBorder(new CompoundBorder(border, margin));
 		label.setToolTipText("Crear mi propia plantilla.");
-		label.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent me) {
-				Juego g = new Juego();
-				InfoJuego frame = new InfoJuego(g, false);
-				frame.setVisible(true);
-				frame.setTitle("Plantilla por defecto");
-				frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			}
-		});
+			//Permite abrir la información del juego añadiendo un eventListener
+			label.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent me) {
+					InfoJuego frame = new InfoJuego(new Juego(), false);
+					frame.setVisible(true);
+					frame.setTitle("Plantilla por defecto");
+					frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					frame.addWindowListener(new WindowListener() {
+						@Override
+						public void windowClosed(WindowEvent e) {
+							//Si se ha cerrado la ventana
+							try {
+								_listaJuegos.clear();
+								_listaJuegosUsuario.clear();
+								lectura_fichero();
+								crearBiblioteca(); //Genero la biblioteca
+								getParent().getParent().getParent().setVisible(false);
+							} catch (IOException ex) {
+								Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
+							}
+						}
+						//Funciones de ventana no usadas para nuestro problema
+						@Override
+						public void windowIconified(WindowEvent e) {}
+						@Override
+						public void windowOpened(WindowEvent e) {}
+						@Override
+						public void windowClosing(WindowEvent e) {}
+						@Override
+						public void windowDeiconified(WindowEvent e) {}
+						@Override
+						public void windowActivated(WindowEvent e) {}
+						@Override
+						public void windowDeactivated(WindowEvent e) {}
+
+					});
+				}
+			});
 		add(label);
 		for (int i = 0; i < _listaJuegos.size(); ++i) {
 			Juego g = (Juego) _listaJuegos.get(i);
