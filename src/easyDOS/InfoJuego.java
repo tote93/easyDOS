@@ -54,10 +54,12 @@ public class InfoJuego extends javax.swing.JFrame {
 			btnPlay.setActionCommand("Play");
 			play = true;
 			_juego = g;
+                        btnDelete.setVisible(true);
 		} else {
 			btnPlay.setText("Añadir a Mis Juegos");
 			btnPlay.setActionCommand("Add");
 			play = false;
+                        btnDelete.setVisible(false);
 		}
 		if (g.getImagen().equals("/img/AddGameUnknown.png")) {
 			btnPlay.setVisible(false);
@@ -68,6 +70,7 @@ public class InfoJuego extends javax.swing.JFrame {
 			btnPlay.setText("Añadir nuevo Juego");
 			btnPlay.setActionCommand("AddNuevo");
 			btnPlay.setVisible(true);
+                        btnDelete.setVisible(false);
 		}
 	}
 
@@ -95,7 +98,7 @@ public class InfoJuego extends javax.swing.JFrame {
         TextDescripcion = new javax.swing.JTextArea();
         btnPlay = new keeptoo.KButton();
         btnCancel = new keeptoo.KButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,12 +153,12 @@ public class InfoJuego extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-eliminar-32.png"))); // NOI18N
-        jLabel1.setText("Eliminar");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-eliminar-32.png"))); // NOI18N
+        btnDelete.setText("Eliminar");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                btnDeleteMouseClicked(evt);
             }
         });
 
@@ -189,7 +192,7 @@ public class InfoJuego extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73)
-                .addComponent(jLabel1)
+                .addComponent(btnDelete)
                 .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
@@ -217,10 +220,11 @@ public class InfoJuego extends javax.swing.JFrame {
                         .addGap(8, 8, 8)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDelete)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -245,18 +249,18 @@ public class InfoJuego extends javax.swing.JFrame {
 		String action = btnPlay.getText();
 		switch (action) {
 		case "Añadir nuevo Juego":
-			AddJuego(true);
+			AddJuego();
 			break;
 		case "Close":
 			this.dispose();
 		case "Jugar":
 			break;
 		case "Añadir a Mis Juegos":
-			AddJuego(false);
+			AddJuego();
 			break;
 		}
 	}//GEN-LAST:event_btnPlayMouseClicked
-	void AddJuego(Boolean flag) {
+	void AddJuego() {
 		AddJuego frameJuego = new AddJuego();
 		frameJuego.setVisible(true);
 		frameJuego.setTitle("Añadir juego " + TextNombre.getText());
@@ -277,14 +281,31 @@ public class InfoJuego extends javax.swing.JFrame {
 						public void actionPerformed(ActionEvent e) {
                                                     try (Writer output = new BufferedWriter(new FileWriter(fileDefault, true))) { 
                                                            String Nombre = TextNombre.getText();
-                                                           if(Nombre.equals("") || Nombre.isEmpty() || Nombre.equals(" ")){
+                                                           String Desarrollador=TextDesarrollador.getText();
+                                                           String Compania=TextCompany.getText();
+                                                           String Descripcion=TextDescripcion.getText();
+                                                           String imagen="/img/AddGameUnknown.png";
+                                                           if(Nombre.equals("") || Nombre.isEmpty() || Nombre.equals(" ")
+                                                                   ||Desarrollador.equals("") || Desarrollador.isEmpty() || Desarrollador.equals(" ")
+                                                                   ||Compania.equals("") || Compania.isEmpty() || Compania.equals(" ")
+                                                                   ||Descripcion.equals("") || Descripcion.isEmpty() || Descripcion.equals(" "))
+                                                           {
                                                                 //eL NOMBRE NO ESTA DEFINIDO
 									TextNombre.setBackground(Color.red);
-									TextNombre.setForeground(Color.white);                                                               
+									TextNombre.setForeground(Color.white);
+                                                                        TextDesarrollador.setBackground(Color.red);
+									TextDesarrollador.setForeground(Color.white);
+                                                                        TextCompany.setBackground(Color.red);
+									TextCompany.setForeground(Color.white); 
+                                                                        TextDescripcion.setBackground(Color.red);
+									TextDescripcion.setForeground(Color.white); 
                                                            }
-                                                           else{
+                                                           else
+                                                           {
+                                                                Juego j=new Juego(100,Nombre,Desarrollador,Compania,"Genero",Descripcion,imagen);
 								output.append(Nombre + "," + ruta + "\n");
-                                                                output.close();                                                               
+                                                                output.close();
+                                                                rehacerBiblioteca(j);
                                                                 finalizar();                                                           
                                                            }
                                                     } catch (IOException ex) {
@@ -313,6 +334,53 @@ public class InfoJuego extends javax.swing.JFrame {
 		});
 
 	}
+        
+        private void rehacerBiblioteca(Juego j) throws FileNotFoundException, IOException
+        {
+            //TODO 1-LEer ficherusmenio de listado de juegos 2-Volvar al temporal 3-dflhjkasfdlhjk
+            
+            String file = getClass().getClassLoader().getResource("./Juegos/listado_juegos.txt").getPath();
+            file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
+            FileReader f = new FileReader(file);
+            BufferedReader b = new BufferedReader(f);
+            String cadena;
+            
+            System.out.println(j.getUrl()+"dfas");
+            
+            //FICHERO AUXILIAR
+
+            String url = getClass().getClassLoader().getResource("./Juegos/").getPath();
+            url = url + "temp.txt";
+            url = url.substring(1, url.length());
+
+            File file2 = new File(url);
+            file2.createNewFile();
+
+            FileWriter fw = new FileWriter(file2);
+
+
+                    while ((cadena = b.readLine()) != null) {
+                  
+                           fw.append(cadena+"\n");
+                    }
+
+                    fw.append(j.getNombre()+"\n");
+                    fw.append(j.getCompania()+"\n");
+                    fw.append(j.getDesarrollador()+"\n");
+                    fw.append(j.getTipo()+"\n");
+                    fw.append(j.getDescrip()+"\n");
+                    fw.append(j.getUrl());
+                    
+                    b.close();
+            fw.close();
+
+            File antiguo = new File(file);
+            antiguo.delete();
+
+            File nuevo = new File(url);
+            boolean success = nuevo.renameTo(antiguo);
+        }
+        
 	private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
 		// TODO add your handling code here:
 		if (play) {
@@ -329,7 +397,7 @@ public class InfoJuego extends javax.swing.JFrame {
 		}
 	}//GEN-LAST:event_btnPlayActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
             
             String nombreJuego=TextNombre.getText();
             try {
@@ -338,7 +406,7 @@ public class InfoJuego extends javax.swing.JFrame {
                 Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
             }
         dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void borrarJuego(String nombreJuego) throws FileNotFoundException, IOException
     {
@@ -433,8 +501,8 @@ public class InfoJuego extends javax.swing.JFrame {
     private javax.swing.JTextArea TextDescripcion;
     private javax.swing.JTextField TextNombre;
     private keeptoo.KButton btnCancel;
+    private javax.swing.JLabel btnDelete;
     private keeptoo.KButton btnPlay;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

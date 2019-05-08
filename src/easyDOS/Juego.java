@@ -30,7 +30,7 @@ public class Juego {
 	}
 
 	public Juego(int id, String Nombre, String Desarrollador, String Compania, String Tipo, String Descrip, String imagen) {
-		this.imagen = "./img/AddGameUnknown.png";
+		//this.imagen = "/img/AddGameUnknown.png";
 		this.Nombre = Nombre;
 		this.Desarrollador = Desarrollador;
 		this.Compania = Compania;
