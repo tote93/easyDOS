@@ -139,7 +139,7 @@ public class Biblioteca extends JPanel {
 	}
 
 	void getMisJuegos() throws FileNotFoundException, IOException {
-		setLayout(new java.awt.GridLayout(_listaJuegosUsuario.size() / 3, 4)); //Establecemos la rejilla a size/3, 4
+		setLayout(new java.awt.GridLayout((int)_listaJuegosUsuario.size() / 2, 4)); //Establecemos la rejilla a size/4, 4
 		for (int i = 0; i < _listaJuegosUsuario.size(); ++i) {
 			Juego g = (Juego) _listaJuegosUsuario.get(i);
 			ImageIcon icon = new ImageIcon(getClass().getResource(g.getImagen()));
