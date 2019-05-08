@@ -1,24 +1,36 @@
-Pacman
-Namco
-Toru Iwatani
-Laberinto
-El objetivo es comer todos los puntos de la pantalla, momento en el que se pasa al siguiente nivel o pantalla. Sin embargo, cuatro fantasmas o monstruos, Shadow, Speedy, Bashful y Pokey, recorren el laberinto para intentar capturar a Pac-Man.
-/img/pacman.png
-Gauntlet
-Atari
-Ed Logg
-Rol
-Gauntlet es un juego de acción en el que los jugadores eligen personajes y luchan a través de hordas de enemigos que los asaltan en el camino hasta el final del nivel. Uno o dos jugadores deben atravesar 100 niveles de caos y magia.
-/img/gaunlet.png
-Kingdom Hearts 
-Taito
-Taito
-Breakout
-Pasó un largo período de tiempo y la fuerza de control de la dimensión Doh volvió a la vida. Ocupando la enorme nave estelar Xorg, ha entrado en nuestro universo desde una dimensión diferente. Mixtec, la nave espacial tipo Arkanoid, ha lanzado la nave Vaus II para realizar un ataque preventivo contra Xorg.
-/img/kh.png
-Duke Nukem
-Taito
-Taito
-Breakout
-Pasó un largo período de tiempo y la fuerza de control de la dimensión Doh volvió a la vida. Ocupando la enorme nave estelar Xorg, ha entrado en nuestro universo desde una dimensión diferente. Mixtec, la nave espacial tipo Arkanoid, ha lanzado la nave Vaus II para realizar un ataque preventivo contra Xorg.
-/img/duke.png
+﻿Doom (1993)
+ID Software
+John Romero
+Shooter
+Viaja al infierno acribillando a balazos a todos los demonios que se pongan en tu camino. Uno de los juegos más influyentes en su género y un clásico imprescindible.
+/img/doomcover.jpg
+System Shock (1994)
+Looking Glass Studios
+Warren Spector
+Aventura
+Pionero en el género CyberPunk, System Shock fué la clave para todos los juegos que combinan el RPG y la acción.
+/img/systemshockcover.jpg
+Monkey Island (1990)
+Lucas Arts
+Ron Gilbert
+Aventura Gráfica
+Acompaña a Guybrush Threepwood en su aventura para convertirse en el pirata más temible de todos los tiempos.
+/img/monkeyislandcover.jpg
+Wolfenstein 3D (1991)
+ID Software
+John Romero
+Shooter
+El juego que inició la fiebre de los First Person Shooter en elos años 90. A día de hoy sigue siendo tan adictivo y divertido como en su momento.
+/img/wolfenstein3dcover.jpg
+Alone in the Dark (1992)
+Infogrames
+Bruno Bonnel
+Survival Horror
+Antes de Resident Evil, Alone in the Dark marcó las pautas para el género Survival Horror influyendo en el resto de títulos que se desarrollaron en la época y sorprendiendo con sus espectaculares gráficos.
+/img/aloneinthedarkcover.jpg
+Alien Breed (1991)
+Team 17
+Micro League
+Acción
+Brutal juego que acción inspirado en las peliculas de Alien y la acción de los arcades de la época.
+/img/alienbreedcover.jpg

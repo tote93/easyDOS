@@ -285,7 +285,8 @@ public class InfoJuego extends javax.swing.JFrame {
                     url  = url +" " +_juego.getUrl();
                     url = url.substring(1, url.length());
                     url=url.replace("/", "\\");
-                    Runtime.getRuntime().exec(url); 
+                    Runtime.getRuntime().exec(url);
+                    dispose();
                         } catch (IOException ioe) {
                                 System.out.println (ioe);
                         }

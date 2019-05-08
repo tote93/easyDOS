@@ -41,7 +41,7 @@ public class Biblioteca extends JPanel {
 	}
 
 	void crearBiblioteca() {
-		setLayout(new java.awt.GridLayout(_listaJuegos.size() / 3, 4)); //Establecemos la rejilla a size/4, 4
+		setLayout(new java.awt.GridLayout((int)_listaJuegos.size() / 2, 4)); //Establecemos la rejilla a size/4, 4
 		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("./img/AddGameUnknown.png").getPath());
 		JLabel label = new JLabel(icon);
 		Border border = label.getBorder();
