@@ -7,8 +7,7 @@
 package easyDOS;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -36,34 +35,51 @@ public class InfoJuego extends javax.swing.JFrame {
 	 * Creates new form test
 	 */
 	public InfoJuego() {
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width / 4 - this.getSize().width / 4, dim.height / 4 - this.getSize().height / 4);
-		initComponents();
+		initComponents();     
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
+                btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                this.pack();
+                this.setLocationRelativeTo(null);                 
 	}
-	public InfoJuego(Juego g, Boolean flag) {
+	public InfoJuego(Juego g, Boolean flag) {            
 		initComponents();
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));  
+                btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));  
 		ImageIcon icon = new ImageIcon(getClass().getResource(g.getImagen()));
 		Caratula.setIcon(icon);
 		TextCompany.setText(g.getCompania());
 		TextDesarrollador.setText(g.getDesarrollador());
 		TextNombre.setText(g.getNombre());
 		TextDescripcion.append(g.getDescrip());
-
+                TextGenero.setText(g.getTipo());
+                this.pack();
+                this.setLocationRelativeTo(null);                 
 		if (flag) {
 			btnPlay.setText("Jugar");
 			btnPlay.setActionCommand("Play");
 			play = true;
 			_juego = g;
                         btnDelete.setVisible(true);
+                        btnDelete.setVisible(true);
+                        TextDescripcion.setEditable(false);
+                        TextDescripcion.setEnabled(false);
+                        System.out.println("ENTRO JUEGOS");
 		} else {
 			btnPlay.setText("Añadir a Mis Juegos");
 			btnPlay.setActionCommand("Add");
 			play = false;
                         btnDelete.setVisible(false);
+                        btnDelete.setVisible(false);
+                        TextDescripcion.setEditable(false);
+                        TextDescripcion.setEnabled(false);                        
 		}
-		if (g.getImagen().equals("/img/AddGameUnknown.png")) {
+		if (g.getImagen().equals("/img/AddGameUnknown.png") && TextNombre.getText().equals("")) {
+                    System.out.println("HOLA");
 			btnPlay.setVisible(false);
 			TextCompany.setEditable(true);
+                        TextGenero.setEditable(true);
 			TextDesarrollador.setEditable(true);
 			TextDescripcion.setEditable(true);
 			TextNombre.setEditable(true);
@@ -71,6 +87,8 @@ public class InfoJuego extends javax.swing.JFrame {
 			btnPlay.setActionCommand("AddNuevo");
 			btnPlay.setVisible(true);
                         btnDelete.setVisible(false);
+                        TextDescripcion.setEditable(true);
+                        TextDescripcion.setEnabled(true);                        
 		}
 	}
 
@@ -86,6 +104,7 @@ public class InfoJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         Caratula = new javax.swing.JLabel();
         LNombre = new javax.swing.JLabel();
         LCompany = new javax.swing.JLabel();
@@ -99,41 +118,61 @@ public class InfoJuego extends javax.swing.JFrame {
         btnPlay = new keeptoo.KButton();
         btnCancel = new keeptoo.KButton();
         btnDelete = new javax.swing.JLabel();
+        LDesarrollador1 = new javax.swing.JLabel();
+        TextGenero = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jPanel1.setOpaque(false);
 
         Caratula.setPreferredSize(new java.awt.Dimension(150, 171));
 
-        LNombre.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        LNombre.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        LNombre.setForeground(new java.awt.Color(255, 255, 255));
         LNombre.setText("Nombre: ");
 
-        LCompany.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        LCompany.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        LCompany.setForeground(new java.awt.Color(255, 255, 255));
         LCompany.setText("Compañia:");
 
-        LDesarrollador.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        LDesarrollador.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        LDesarrollador.setForeground(new java.awt.Color(255, 255, 255));
         LDesarrollador.setText("Desarrollador:");
 
-        LDescripcion.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        LDescripcion.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        LDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         LDescripcion.setText("Descripción");
 
         TextNombre.setEditable(false);
-        TextNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TextNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         TextCompany.setEditable(false);
-        TextCompany.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TextCompany.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         TextDesarrollador.setEditable(false);
-        TextDesarrollador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TextDesarrollador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setOpaque(false);
 
         TextDescripcion.setColumns(20);
         TextDescripcion.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         TextDescripcion.setLineWrap(true);
         TextDescripcion.setRows(5);
         TextDescripcion.setWrapStyleWord(true);
+        TextDescripcion.setOpaque(false);
         jScrollPane2.setViewportView(TextDescripcion);
 
         btnPlay.setText("Jugar");
         btnPlay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPlay.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnPlay.setkHoverEndColor(new java.awt.Color(153, 153, 255));
+        btnPlay.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnPlay.setkHoverStartColor(new java.awt.Color(153, 153, 255));
+        btnPlay.setkSelectedColor(new java.awt.Color(102, 102, 255));
+        btnPlay.setkStartColor(new java.awt.Color(102, 204, 255));
         btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPlayMouseClicked(evt);
@@ -147,85 +186,136 @@ public class InfoJuego extends javax.swing.JFrame {
 
         btnCancel.setText("Cancelar");
         btnCancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancel.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnCancel.setkHoverEndColor(new java.awt.Color(153, 153, 255));
+        btnCancel.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnCancel.setkHoverStartColor(new java.awt.Color(153, 153, 255));
+        btnCancel.setkSelectedColor(new java.awt.Color(102, 102, 255));
+        btnCancel.setkStartColor(new java.awt.Color(102, 204, 255));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-eliminar-32.png"))); // NOI18N
         btnDelete.setText("Eliminar");
+        btnDelete.setToolTipText("Eliminar este juego");
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnDeleteMousePressed(evt);
+            }
         });
+
+        LDesarrollador1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        LDesarrollador1.setForeground(new java.awt.Color(255, 255, 255));
+        LDesarrollador1.setText("Género:");
+
+        TextGenero.setEditable(false);
+        TextGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LCompany)
+                                    .addComponent(LNombre)
+                                    .addComponent(LDesarrollador1)
+                                    .addComponent(LDesarrollador))
+                                .addGap(95, 95, 95)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(TextCompany)
+                                            .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(TextGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(TextDesarrollador, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(Caratula, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 1, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LDescripcion)
+                        .addGap(608, 608, 608))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LNombre)
+                            .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LCompany)
+                            .addComponent(TextCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LDesarrollador1))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LDesarrollador)
+                            .addComponent(TextDesarrollador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Caratula, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addComponent(LDescripcion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete)))
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LDescripcion)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LDesarrollador)
-                                    .addComponent(LCompany)
-                                    .addComponent(LNombre))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TextCompany)
-                                    .addComponent(TextDesarrollador)
-                                    .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Caratula, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(btnDelete)
-                .addGap(38, 38, 38))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 777, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LNombre)
-                            .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LCompany)
-                            .addComponent(TextCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LDesarrollador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextDesarrollador))
-                        .addGap(27, 27, 27)
-                        .addComponent(LDescripcion))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Caratula, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 29, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 543, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,14 +373,16 @@ public class InfoJuego extends javax.swing.JFrame {
                                                            String Nombre = TextNombre.getText();
                                                            String Desarrollador=TextDesarrollador.getText();
                                                            String Compania=TextCompany.getText();
+                                                           String Genero = TextGenero.getText();
                                                            String Descripcion=TextDescripcion.getText();
                                                            String imagen="/img/AddGameUnknown.png";
                                                            if(Nombre.equals("") || Nombre.isEmpty() || Nombre.equals(" ")
                                                                    ||Desarrollador.equals("") || Desarrollador.isEmpty() || Desarrollador.equals(" ")
                                                                    ||Compania.equals("") || Compania.isEmpty() || Compania.equals(" ")
-                                                                   ||Descripcion.equals("") || Descripcion.isEmpty() || Descripcion.equals(" "))
+                                                                   ||Descripcion.equals("") || Descripcion.isEmpty() || Descripcion.equals(" ")
+                                                                   ||Genero.equals("") || Genero.isEmpty() || Genero.equals(" "))
                                                            {
-                                                                //eL NOMBRE NO ESTA DEFINIDO
+                                                                        //eL NOMBRE NO ESTA DEFINIDO
 									TextNombre.setBackground(Color.red);
 									TextNombre.setForeground(Color.white);
                                                                         TextDesarrollador.setBackground(Color.red);
@@ -298,11 +390,13 @@ public class InfoJuego extends javax.swing.JFrame {
                                                                         TextCompany.setBackground(Color.red);
 									TextCompany.setForeground(Color.white); 
                                                                         TextDescripcion.setBackground(Color.red);
-									TextDescripcion.setForeground(Color.white); 
+									TextDescripcion.setForeground(Color.white);
+                                                                        TextGenero.setBackground(Color.red);
+									TextGenero.setForeground(Color.white);                                                                        
                                                            }
                                                            else
                                                            {
-                                                                Juego j=new Juego(100,Nombre,Desarrollador,Compania,"Genero",Descripcion,imagen);
+                                                                Juego j=new Juego(100,Nombre,Desarrollador,Compania,Genero,Descripcion,imagen);                                                                
 								output.append(Nombre + "," + ruta + "\n");
                                                                 output.close();
                                                                 rehacerBiblioteca(j);
@@ -313,10 +407,7 @@ public class InfoJuego extends javax.swing.JFrame {
                                                     }                                                   
 						}
 					});
-
-
 				}
-
 			}
 			//Funciones de ventana no usadas para nuestro problema
 			@Override
@@ -343,12 +434,8 @@ public class InfoJuego extends javax.swing.JFrame {
             file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
             FileReader f = new FileReader(file);
             BufferedReader b = new BufferedReader(f);
-            String cadena;
-            
-            System.out.println(j.getUrl()+"dfas");
-            
+            String cadena;           
             //FICHERO AUXILIAR
-
             String url = getClass().getClassLoader().getResource("./Juegos/").getPath();
             url = url + "temp.txt";
             url = url.substring(1, url.length());
@@ -369,7 +456,7 @@ public class InfoJuego extends javax.swing.JFrame {
                     fw.append(j.getDesarrollador()+"\n");
                     fw.append(j.getTipo()+"\n");
                     fw.append(j.getDescrip()+"\n");
-                    fw.append(j.getUrl());
+                    fw.append(j.getImagen());
                     
                     b.close();
             fw.close();
@@ -407,6 +494,10 @@ public class InfoJuego extends javax.swing.JFrame {
             }
         dispose();
     }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteMousePressed
 
     private void borrarJuego(String nombreJuego) throws FileNotFoundException, IOException
     {
@@ -455,54 +546,24 @@ public class InfoJuego extends javax.swing.JFrame {
 		this.dispose();
 	}
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(InfoJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(InfoJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(InfoJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(InfoJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new InfoJuego().setVisible(true);
-			}
-		});
-	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Caratula;
     private javax.swing.JLabel LCompany;
     private javax.swing.JLabel LDesarrollador;
+    private javax.swing.JLabel LDesarrollador1;
     private javax.swing.JLabel LDescripcion;
     private javax.swing.JLabel LNombre;
     private javax.swing.JTextField TextCompany;
     private javax.swing.JTextField TextDesarrollador;
     private javax.swing.JTextArea TextDescripcion;
+    private javax.swing.JTextField TextGenero;
     private javax.swing.JTextField TextNombre;
     private keeptoo.KButton btnCancel;
     private javax.swing.JLabel btnDelete;
     private keeptoo.KButton btnPlay;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

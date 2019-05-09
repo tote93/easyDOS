@@ -6,6 +6,7 @@
 
 package easyDOS;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
@@ -34,6 +35,10 @@ public class Home extends javax.swing.JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		DisplayPanel.setVisible(false);
+                btnAddJuego.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnSalir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnMisJuegos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnPreferencias1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	private void checkFileUser() throws IOException {
@@ -57,14 +62,15 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAddJuego = new keeptoo.KButton();
-        btnMisJuegos = new keeptoo.KButton();
-        btnSalir = new keeptoo.KButton();
-        jLabel1 = new javax.swing.JLabel();
         DisplayPanel = new javax.swing.JPanel();
         JScrollBilioteca = new javax.swing.JScrollPane();
-        biblioteca1 = new easyDOS.Biblioteca();
+        biblioteca = new easyDOS.Biblioteca();
+        jPanel1 = new javax.swing.JPanel();
+        btnAddJuego = new keeptoo.KButton();
+        btnMisJuegos = new keeptoo.KButton();
         btnPreferencias1 = new keeptoo.KButton();
+        btnSalir = new keeptoo.KButton();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,82 +84,126 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JScrollBilioteca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        JScrollBilioteca.setViewportBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)));
+        JScrollBilioteca.setViewportView(biblioteca);
+
+        javax.swing.GroupLayout DisplayPanelLayout = new javax.swing.GroupLayout(DisplayPanel);
+        DisplayPanel.setLayout(DisplayPanelLayout);
+        DisplayPanelLayout.setHorizontalGroup(
+            DisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JScrollBilioteca)
+        );
+        DisplayPanelLayout.setVerticalGroup(
+            DisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JScrollBilioteca)
+        );
+
+        getContentPane().add(DisplayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 740, 520));
+
+        jPanel1.setOpaque(false);
+
+        btnAddJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/obtenerJuego.png"))); // NOI18N
         btnAddJuego.setText("Añadir Juego");
         btnAddJuego.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAddJuego.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnAddJuego.setkHoverEndColor(new java.awt.Color(153, 153, 255));
+        btnAddJuego.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnAddJuego.setkHoverStartColor(new java.awt.Color(153, 153, 255));
+        btnAddJuego.setkSelectedColor(new java.awt.Color(102, 102, 255));
         btnAddJuego.setkStartColor(new java.awt.Color(102, 204, 255));
         btnAddJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddJuegoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAddJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
+        btnMisJuegos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cd.png"))); // NOI18N
         btnMisJuegos.setText("Mis Juegos");
         btnMisJuegos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnMisJuegos.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnMisJuegos.setkHoverEndColor(new java.awt.Color(153, 153, 255));
+        btnMisJuegos.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnMisJuegos.setkHoverStartColor(new java.awt.Color(153, 153, 255));
+        btnMisJuegos.setkSelectedColor(new java.awt.Color(102, 102, 255));
         btnMisJuegos.setkStartColor(new java.awt.Color(102, 204, 255));
         btnMisJuegos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMisJuegosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMisJuegos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
-        btnSalir.setText("Salir");
-        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSalir.setkBackGroundColor(new java.awt.Color(255, 0, 153));
-        btnSalir.setkEndColor(new java.awt.Color(255, 102, 102));
-        btnSalir.setkHoverForeGround(new java.awt.Color(255, 0, 153));
-        btnSalir.setkHoverStartColor(new java.awt.Color(255, 0, 153));
-        btnSalir.setkSelectedColor(new java.awt.Color(255, 0, 153));
-        btnSalir.setkStartColor(new java.awt.Color(102, 204, 255));
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/easyBox.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 36, 110, 150));
-
-        javax.swing.GroupLayout biblioteca1Layout = new javax.swing.GroupLayout(biblioteca1);
-        biblioteca1.setLayout(biblioteca1Layout);
-        biblioteca1Layout.setHorizontalGroup(
-            biblioteca1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
-        );
-        biblioteca1Layout.setVerticalGroup(
-            biblioteca1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 438, Short.MAX_VALUE)
-        );
-
-        JScrollBilioteca.setViewportView(biblioteca1);
-
-        javax.swing.GroupLayout DisplayPanelLayout = new javax.swing.GroupLayout(DisplayPanel);
-        DisplayPanel.setLayout(DisplayPanelLayout);
-        DisplayPanelLayout.setHorizontalGroup(
-            DisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JScrollBilioteca, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-        );
-        DisplayPanelLayout.setVerticalGroup(
-            DisplayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JScrollBilioteca, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(DisplayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 730, 440));
-
+        btnPreferencias1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/settings.png"))); // NOI18N
         btnPreferencias1.setText("Preferencias");
         btnPreferencias1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPreferencias1.setkEndColor(new java.awt.Color(153, 0, 153));
+        btnPreferencias1.setkHoverEndColor(new java.awt.Color(153, 153, 255));
+        btnPreferencias1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnPreferencias1.setkHoverStartColor(new java.awt.Color(153, 153, 255));
+        btnPreferencias1.setkSelectedColor(new java.awt.Color(102, 102, 255));
         btnPreferencias1.setkStartColor(new java.awt.Color(102, 204, 255));
         btnPreferencias1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPreferencias1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPreferencias1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/out.png"))); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnSalir.setkBackGroundColor(new java.awt.Color(255, 0, 153));
+        btnSalir.setkEndColor(new java.awt.Color(255, 102, 102));
+        btnSalir.setkHoverEndColor(new java.awt.Color(153, 153, 255));
+        btnSalir.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnSalir.setkHoverStartColor(new java.awt.Color(153, 153, 255));
+        btnSalir.setkSelectedColor(new java.awt.Color(102, 102, 255));
+        btnSalir.setkStartColor(new java.awt.Color(102, 204, 255));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/easyBox.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnMisJuegos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(65, 65, 65)
+                            .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPreferencias1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(btnAddJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMisJuegos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPreferencias1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 530));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
         background.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -168,11 +218,12 @@ public class Home extends javax.swing.JFrame {
 
 	private void btnAddJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddJuegoActionPerformed
 		// TODO add your handling code here:
-		biblioteca1.removeAll();
-		biblioteca1.repaint();
-		biblioteca1.crearBiblioteca(); //Genero la biblioteca
-		biblioteca1.setVisible(true);
+		biblioteca.removeAll();
+		biblioteca.repaint();
+		biblioteca.crearBiblioteca(); //Genero la biblioteca
+		biblioteca.setVisible(true);
 		JScrollBilioteca.setVisible(true);
+                JScrollBilioteca.getVerticalScrollBar().setUnitIncrement(16);
 		DisplayPanel.setVisible(true);
 	}//GEN-LAST:event_btnAddJuegoActionPerformed
 
@@ -182,14 +233,11 @@ public class Home extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnSalirActionPerformed
 
 	private void btnMisJuegosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisJuegosActionPerformed
-		try {
-			// TODO add your handling code here:
-                                         
-                        
-			biblioteca1.removeAll(); //Elimino todos los elementos de la biblioteca (graficos)
-			biblioteca1.repaint();
-			biblioteca1.getMisJuegos();
-			biblioteca1.setVisible(true);                        
+		try {		                                                                
+			biblioteca.removeAll(); //Elimino todos los elementos de la biblioteca (graficos)
+			biblioteca.repaint();
+			biblioteca.getMisJuegos();
+			biblioteca.setVisible(true);                        
 			JScrollBilioteca.setVisible(true);
 			DisplayPanel.setVisible(true);
 		} catch (IOException ex) {
@@ -220,50 +268,18 @@ public class Home extends javax.swing.JFrame {
             
 	}//GEN-LAST:event_btnPreferencias1ActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
 
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new Home().setVisible(true);
-			}
-		});
-	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DisplayPanel;
     private javax.swing.JScrollPane JScrollBilioteca;
     private javax.swing.JLabel background;
-    private easyDOS.Biblioteca biblioteca1;
+    private easyDOS.Biblioteca biblioteca;
     private keeptoo.KButton btnAddJuego;
     private keeptoo.KButton btnMisJuegos;
     private keeptoo.KButton btnPreferencias1;
     private keeptoo.KButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
