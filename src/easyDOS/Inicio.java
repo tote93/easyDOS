@@ -6,27 +6,16 @@
 
 package easyDOS;
 
-import java.io.File;
 import javax.swing.UIManager;
-
 /**
  *
  * @author josel
  */
 public class Inicio {
-
+    Auxiliares aux = new Auxiliares();
     public Inicio() {      
-            String url = getClass().getClassLoader().getResource("../").getPath();
-            System.out.println("HOLA -> "+url);
-            url = url + "default.txt";
-            File f = new File(url);
-            if (f.exists() && !f.isDirectory()) {
-                Home h = new Home();
-                h.setVisible(true);                
-            }else{
-                Bienvenida b = new Bienvenida();
-                b.setVisible(true);                
-            }
+        aux.inicializar();
+
     }
     
 	public static void main(String args[]) {

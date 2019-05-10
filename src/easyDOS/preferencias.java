@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package easyDOS;
 
 import java.awt.Color;
@@ -16,6 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,143 +25,158 @@ import java.util.logging.Logger;
  */
 public class preferencias extends javax.swing.JFrame {
 
-	String fullscreen;
-	int sensitivity;
-	String core;
-	String output;
+    String fullscreen;
+    int sensitivity;
+    String core;
+    String output;
 
-	public preferencias() {
-		initComponents();
-                this.pack();
-                this.setLocationRelativeTo(null);                 
-		setTitle("Preferencias");
-                kButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnAcceptChanges.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		setResizable(false);
-		try {
-			lectura_fichero();
-		} catch (IOException ex) {
-			Logger.getLogger(preferencias.class.getName()).log(Level.SEVERE, null, ex);
-		}
+    public preferencias() {
+        initComponents();
+        this.pack();
+        this.setLocationRelativeTo(null);
+        setTitle("Preferencias");
+        kButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnAcceptChanges.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        setResizable(false);
+        try {
+            lectura_fichero();
+        } catch (IOException ex) {
+            Logger.getLogger(preferencias.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-	}
+    }
 
-	void lectura_fichero() throws FileNotFoundException, IOException {
+    void lectura_fichero() throws FileNotFoundException, IOException {
 
-		String[] parts;
+        String[] parts;
+        String file = new java.io.File(".").getCanonicalPath();
+        file = file.replace("\\", "/");
+        file = file + "/dosBOX/";
+        File dir = new File(file);
+        if (!dir.exists()) {
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(jPanel1);
+            JOptionPane.showMessageDialog(jPanel1, "No se han encontrado los archivos de configuración para DosBox, se ejecutarán las preferencias en modo lectura.");
+        } else {
 
-		String file = getClass().getClassLoader().getResource("./dosBOX/Data/settings/dosbox.conf").getPath();
-		file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
+            file = file + "Data/settings/";
+            dir = new File(file);
+            if (!dir.exists()) {
+                jPanel1.removeAll();
+            } else {
+                file = file + "dosbox.conf";
+                FileReader f = new FileReader(file);
+                BufferedReader b = new BufferedReader(f);
+                String cadena = b.readLine();
+                while (cadena != null) {
+                    parts = cadena.split("=");
+                    if (parts[0].equals("fullscreen")) {
+                        if (parts[1].equals("false")) {
+                            btnFullScreenNo.setBackground(Color.green);
+                            btnFullScreenYes.setBackground(Color.red);
+                            fullscreen = "false";
+                        } else {
+                            btnFullScreenNo.setBackground(Color.red);
+                            btnFullScreenYes.setBackground(Color.green);
+                            fullscreen = "true";
+                        }
+                    }
 
-		FileReader f = new FileReader(file);
-		BufferedReader b = new BufferedReader(f);
-		String cadena = b.readLine();
-		while (cadena != null) {
-			parts = cadena.split("=");
-			if ( parts[0].equals("fullscreen")) {
-				if (parts[1].equals("false")) {
-					btnFullScreenNo.setBackground(Color.green);
-					btnFullScreenYes.setBackground(Color.red);
-					fullscreen = "false";
-				} else {
-					btnFullScreenNo.setBackground(Color.red);
-					btnFullScreenYes.setBackground(Color.green);
-					fullscreen = "true";
-				}
-			}
+                    if (parts[0].equals("sensitivity")) {
+                        switch (parts[1]) {
+                            case "50":
+                                btnMouseSensivity50.setBackground(Color.green);
+                                btnMouseSensivity100.setBackground(Color.red);
+                                btnMouseSensivity150.setBackground(Color.red);
+                                btnMouseSensivity200.setBackground(Color.red);
+                                sensitivity = 50;
+                                break;
+                            case "100":
+                                btnMouseSensivity50.setBackground(Color.red);
+                                btnMouseSensivity100.setBackground(Color.green);
+                                btnMouseSensivity150.setBackground(Color.red);
+                                btnMouseSensivity200.setBackground(Color.red);
+                                sensitivity = 100;
+                                break;
+                            case "150":
+                                btnMouseSensivity50.setBackground(Color.red);
+                                btnMouseSensivity100.setBackground(Color.red);
+                                btnMouseSensivity150.setBackground(Color.green);
+                                btnMouseSensivity200.setBackground(Color.red);
+                                sensitivity = 150;
+                                break;
+                            case "200":
+                                btnMouseSensivity50.setBackground(Color.red);
+                                btnMouseSensivity100.setBackground(Color.red);
+                                btnMouseSensivity150.setBackground(Color.red);
+                                btnMouseSensivity200.setBackground(Color.green);
+                                sensitivity = 200;
+                                break;
+                        }
+                    }
+                    if (parts[0].equals("core")) {
+                        switch (parts[1]) {
+                            case "auto":
+                                btnCpuAuto.setBackground(Color.green);
+                                btnCpuNormal.setBackground(Color.red);
+                                btnCpuSimple.setBackground(Color.red);
+                                btnCpuDina.setBackground(Color.red);
+                                core = "auto";
+                                break;
+                            case "normal":
+                                btnCpuAuto.setBackground(Color.red);
+                                btnCpuNormal.setBackground(Color.green);
+                                btnCpuSimple.setBackground(Color.red);
+                                btnCpuDina.setBackground(Color.red);
+                                core = "normal";
+                                break;
+                            case "simple":
+                                btnCpuAuto.setBackground(Color.red);
+                                btnCpuNormal.setBackground(Color.red);
+                                btnCpuSimple.setBackground(Color.green);
+                                btnCpuDina.setBackground(Color.red);
+                                core = "simple";
+                                break;
+                            case "dynamic":
+                                btnCpuAuto.setBackground(Color.red);
+                                btnCpuNormal.setBackground(Color.red);
+                                btnCpuSimple.setBackground(Color.red);
+                                btnCpuDina.setBackground(Color.green);
+                                core = "dynamic";
+                                break;
+                        }
+                    }
+                    if (parts[0].equals("output")) {
+                        switch (parts[1]) {
+                            case "surface":
+                                btnRenderNormal.setBackground(Color.green);
+                                btnRenderOpen.setBackground(Color.red);
+                                btnRenderDir.setBackground(Color.red);
+                                output = "surface";
+                                break;
+                            case "opengl":
+                                btnRenderNormal.setBackground(Color.red);
+                                btnRenderOpen.setBackground(Color.green);
+                                btnRenderDir.setBackground(Color.red);
+                                output = "opengl";
+                                break;
+                            case "ddraw":
+                                btnRenderNormal.setBackground(Color.red);
+                                btnRenderOpen.setBackground(Color.red);
+                                btnRenderDir.setBackground(Color.green);
+                                output = "ddraw";
+                                break;
+                        }
+                    }
+                    cadena = b.readLine();
+                }
+                b.close();
+            }
 
-			if (parts[0].equals("sensitivity")) {
-                            switch (parts[1]) {
-                                case "50":
-                                    btnMouseSensivity50.setBackground(Color.green);
-                                    btnMouseSensivity100.setBackground(Color.red);
-                                    btnMouseSensivity150.setBackground(Color.red);
-                                    btnMouseSensivity200.setBackground(Color.red);
-                                    sensitivity = 50;
-                                    break;
-                                case "100":
-                                    btnMouseSensivity50.setBackground(Color.red);
-                                    btnMouseSensivity100.setBackground(Color.green);
-                                    btnMouseSensivity150.setBackground(Color.red);
-                                    btnMouseSensivity200.setBackground(Color.red);
-                                    sensitivity = 100;
-                                    break;
-                                case "150":
-                                    btnMouseSensivity50.setBackground(Color.red);
-                                    btnMouseSensivity100.setBackground(Color.red);
-                                    btnMouseSensivity150.setBackground(Color.green);
-                                    btnMouseSensivity200.setBackground(Color.red);
-                                    sensitivity = 150;
-                                    break;
-                                case "200":
-                                    btnMouseSensivity50.setBackground(Color.red);
-                                    btnMouseSensivity100.setBackground(Color.red);
-                                    btnMouseSensivity150.setBackground(Color.red);
-                                    btnMouseSensivity200.setBackground(Color.green);
-                                    sensitivity = 200;
-                                    break;
-                            }
-			}
-			if (parts[0].equals("core")) {
-                            switch (parts[1]) {
-                                case "auto":
-                                    btnCpuAuto.setBackground(Color.green);
-                                    btnCpuNormal.setBackground(Color.red);
-                                    btnCpuSimple.setBackground(Color.red);
-                                    btnCpuDina.setBackground(Color.red);
-                                    core = "auto";
-                                    break;
-                                case "normal":
-                                    btnCpuAuto.setBackground(Color.red);
-                                    btnCpuNormal.setBackground(Color.green);
-                                    btnCpuSimple.setBackground(Color.red);
-                                    btnCpuDina.setBackground(Color.red);
-                                    core = "normal";
-                                    break;
-                                case "simple":
-                                    btnCpuAuto.setBackground(Color.red);
-                                    btnCpuNormal.setBackground(Color.red);
-                                    btnCpuSimple.setBackground(Color.green);
-                                    btnCpuDina.setBackground(Color.red);
-                                    core = "simple";
-                                    break;
-                                case "dynamic":
-                                    btnCpuAuto.setBackground(Color.red);
-                                    btnCpuNormal.setBackground(Color.red);
-                                    btnCpuSimple.setBackground(Color.red);
-                                    btnCpuDina.setBackground(Color.green);
-                                    core = "dynamic";
-                                    break;
-                            }
-			}
-			if (parts[0].equals("output")) {
-                            switch (parts[1]) {
-                                case "surface":
-                                    btnRenderNormal.setBackground(Color.green);
-                                    btnRenderOpen.setBackground(Color.red);
-                                    btnRenderDir.setBackground(Color.red);
-                                    output = "surface";
-                                    break;
-                                case "opengl":
-                                    btnRenderNormal.setBackground(Color.red);
-                                    btnRenderOpen.setBackground(Color.green);
-                                    btnRenderDir.setBackground(Color.red);
-                                    output = "opengl";
-                                    break;
-                                case "ddraw":
-                                    btnRenderNormal.setBackground(Color.red);
-                                    btnRenderOpen.setBackground(Color.red);
-                                    btnRenderDir.setBackground(Color.green);
-                                    output = "ddraw";
-                                    break;
-                            }
-			}
-			cadena = b.readLine();
-		}
-		b.close();
-	}
+        }
 
-	@SuppressWarnings("unchecked")
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -577,63 +594,66 @@ public class preferencias extends javax.swing.JFrame {
         fullscreen = "true";
     }//GEN-LAST:event_btnFullScreenYesActionPerformed
 
-	private void saveOpts() throws FileNotFoundException, IOException {
-		//FICHERO INICIAL
-		String file = getClass().getClassLoader().getResource("./dosBOX/Data/settings/dosbox.conf").getPath();
-		file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
-		FileReader f = new FileReader(file);
-		BufferedReader b = new BufferedReader(f);
-		String cadena;
+    private void saveOpts() throws FileNotFoundException, IOException {
+        //FICHERO INICIAL        
+        String file = new java.io.File(".").getCanonicalPath();
+        file = file.replace("\\", "/");
+        file = file + "/dosBOX/Data/settings/dosbox.conf";
+        File dir = new File(file);
+        if (!dir.exists()) {
+            jPanel1.removeAll();
+        } else {
+            FileReader f = new FileReader(file);
+            BufferedReader b = new BufferedReader(f);
+            String cadena;
 
-		//FICHERO AUXILIAR
+            //FICHERO AUXILIAR
+            String url = new java.io.File(".").getCanonicalPath();
+            url = url.replace("\\", "/");
+            url = url + "temp.conf";
 
-		String url = getClass().getClassLoader().getResource("./dosBOX/Data/settings/").getPath();
-		url = url + "temp.conf";
-		url = url.substring(1, url.length());
+            File file2 = new File(url);
+            file2.createNewFile();
 
-		File file2 = new File(url);
-		file2.createNewFile();
+            FileWriter fw = new FileWriter(file2);
 
-		FileWriter fw = new FileWriter(file2);
+            String[] parts;
 
-		String[] parts;
+            while ((cadena = b.readLine()) != null) {
 
-		while ((cadena = b.readLine()) != null) {
+                parts = cadena.split("=");
+                switch (parts[0]) {
+                    case "fullscreen":
+                        fw.append("fullscreen=" + fullscreen + "\n");
+                        break;
+                    case "sensitivity":
+                        fw.append("sensitivity=" + Integer.toString(sensitivity) + "\n");
+                        break;
+                    case "core":
+                        fw.append("core=" + core + "\n");
+                        break;
+                    case "output":
+                        fw.append("output=" + output + "\n");
+                        break;
+                    default:
+                        fw.append(cadena + "\n");
+                        break;
+                }
 
-			parts = cadena.split("=");
-                    switch (parts[0]) {
-                        case "fullscreen":
-                            fw.append("fullscreen=" + fullscreen + "\n");
-                            break;
-                        case "sensitivity":
-                            fw.append("sensitivity=" + Integer.toString(sensitivity) + "\n");
-                            break;
-                        case "core":
-                            fw.append("core=" + core + "\n");
-                            break;
-                        case "output":
-                            fw.append("output=" + output + "\n");
-                            break;
-                        default:
-                            fw.append(cadena + "\n");
-                            break;
-                    }
+            }
 
-		}
+            b.close();
+            fw.close();
 
-		b.close();
-		fw.close();
+            File antiguo = new File(file);
+            antiguo.delete();
 
-		File antiguo = new File(file);
-		antiguo.delete();
+            File nuevo = new File(url);
+            boolean success = nuevo.renameTo(antiguo);
 
-		File nuevo = new File(url);
-		boolean success = nuevo.renameTo(antiguo);
+        }
 
-
-
-	}
-
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

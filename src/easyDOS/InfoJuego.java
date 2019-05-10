@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package easyDOS;
 
 import java.awt.Color;
@@ -23,87 +22,96 @@ import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import easyDOS.Auxiliares;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author josel
  */
 public class InfoJuego extends javax.swing.JFrame {
-	Boolean play = false;
-	Juego _juego = new Juego();
-	/**
-	 * Creates new form test
-	 */
-	public InfoJuego() {
-		initComponents();     
-                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
-                btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                this.pack();
-                this.setLocationRelativeTo(null);                 
-	}
-	public InfoJuego(Juego g, Boolean flag) {            
-		initComponents();
-                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));  
-                btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));  
-		ImageIcon icon = new ImageIcon(getClass().getResource(g.getImagen()));
-		Caratula.setIcon(icon);
-		TextCompany.setText(g.getCompania());
-		TextDesarrollador.setText(g.getDesarrollador());
-		TextNombre.setText(g.getNombre());
-		TextDescripcion.append(g.getDescrip());
-                TextGenero.setText(g.getTipo());
-                this.pack();
-                this.setLocationRelativeTo(null);                 
-		if (flag) {
-			btnPlay.setText("Jugar");
-			btnPlay.setActionCommand("Play");
-			play = true;
-			_juego = g;
-                        btnDelete.setVisible(true);
-                        btnDelete.setVisible(true);
-                        TextDescripcion.setEditable(false);
-                        TextDescripcion.setEnabled(false);
-                        System.out.println("ENTRO JUEGOS");
-		} else {
-			btnPlay.setText("Añadir a Mis Juegos");
-			btnPlay.setActionCommand("Add");
-			play = false;
-                        btnDelete.setVisible(false);
-                        btnDelete.setVisible(false);
-                        TextDescripcion.setEditable(false);
-                        TextDescripcion.setEnabled(false);                        
-		}
-		if (g.getImagen().equals("/img/AddGameUnknown.png") && TextNombre.getText().equals("")) {
-                    System.out.println("HOLA");
-			btnPlay.setVisible(false);
-			TextCompany.setEditable(true);
-                        TextGenero.setEditable(true);
-			TextDesarrollador.setEditable(true);
-			TextDescripcion.setEditable(true);
-			TextNombre.setEditable(true);
-			btnPlay.setText("Añadir nuevo Juego");
-			btnPlay.setActionCommand("AddNuevo");
-			btnPlay.setVisible(true);
-                        btnDelete.setVisible(false);
-                        TextDescripcion.setEditable(true);
-                        TextDescripcion.setEnabled(true);                        
-		}
-	}
 
+    Boolean play = false;
+    Juego _juego = new Juego();
+    Auxiliares aux = new Auxiliares();
 
+    /**
+     * Creates new form test
+     */
+    public InfoJuego() {
+        initComponents();
+        btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        this.pack();
+        this.setLocationRelativeTo(null);
+        UrlImg.setVisible(false);
+    }
 
+    public InfoJuego(Juego g, Boolean flag) {
+        initComponents();
+        btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnPlay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        BufferedImage img = aux.loadImage(g.getImagen());
+        ImageIcon icon = new ImageIcon(img);
+        Caratula.setIcon(icon);
+        TextCompany.setText(g.getCompania());
+        TextDesarrollador.setText(g.getDesarrollador());
+        TextNombre.setText(g.getNombre());
+        TextDescripcion.append(g.getDescrip());
+        TextGenero.setText(g.getTipo());
+        UrlImg.setText(g.getImagen());
+        this.pack();
+        this.setLocationRelativeTo(null);
+        if (flag) {
+            btnPlay.setText("Jugar");
+            btnPlay.setActionCommand("Play");
+            play = true;
+            _juego = g;
+            btnDelete.setVisible(true);
+            btnDelete.setVisible(true);
+            TextDescripcion.setEditable(false);
+            TextDescripcion.setEnabled(false);
+        } else {
+            btnPlay.setText("Añadir a Mis Juegos");
+            btnPlay.setActionCommand("Add");
+            play = false;
+            btnDelete.setVisible(false);
+            btnDelete.setVisible(false);
+            TextDescripcion.setEditable(false);
+            TextDescripcion.setEnabled(false);
+        }
+        if (g.getImagen().equals("/img/AddGameUnknown.png") && TextNombre.getText().equals("")) {
+            btnPlay.setVisible(false);
+            TextCompany.setEditable(true);
+            TextGenero.setEditable(true);
+            TextDesarrollador.setEditable(true);
+            TextDescripcion.setEditable(true);
+            TextNombre.setEditable(true);
+            btnPlay.setText("Añadir nuevo Juego");
+            btnPlay.setActionCommand("AddNuevo");
+            btnPlay.setVisible(true);
+            btnDelete.setVisible(false);
+            TextDescripcion.setEditable(true);
+            TextDescripcion.setEnabled(true);
+        }
+    }
 
-	/**
-	 * This method is called from within the constructor to initialize the form.
-	 * WARNING: Do NOT modify this code. The content of this method is always
-	 * regenerated by the Form Editor.
-	 */
-	@SuppressWarnings("unchecked")
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        UrlImg = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Caratula = new javax.swing.JLabel();
         LNombre = new javax.swing.JLabel();
@@ -322,176 +330,195 @@ public class InfoJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-		// TODO add your handling code here:
+            // TODO add your handling code here:
 	}//GEN-LAST:event_kButton1ActionPerformed
 
 	private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
-		// TODO add your handling code here:
+            // TODO add your handling code here:
 	}//GEN-LAST:event_kButton2ActionPerformed
 
 	private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-		// TODO add your handling code here:
-		this.dispose();
+            // TODO add your handling code here:
+            this.dispose();
 	}//GEN-LAST:event_btnCancelActionPerformed
 
 	private void btnPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseClicked
-		// TODO add your handling code here:
-		String action = btnPlay.getText();
-		switch (action) {
-		case "Añadir nuevo Juego":
-			AddJuego();
-			break;
-		case "Close":
-			this.dispose();
-		case "Jugar":
-			break;
-		case "Añadir a Mis Juegos":
-			AddJuego();
-			break;
-		}
+            // TODO add your handling code here:
+            String action = btnPlay.getText();
+            switch (action) {
+                case "Añadir nuevo Juego":
+                    AddJuego();
+                    break;
+                case "Close":
+                    this.dispose();
+                case "Jugar":
+                    break;
+                case "Añadir a Mis Juegos":
+                    AddJuego();
+                    break;
+            }
 	}//GEN-LAST:event_btnPlayMouseClicked
-	void AddJuego() {
-		AddJuego frameJuego = new AddJuego();
-		frameJuego.setVisible(true);
-		frameJuego.setTitle("Añadir juego " + TextNombre.getText());
-		frameJuego.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		frameJuego.addWindowListener(new WindowListener() {
-			@Override
-			public void windowClosed(WindowEvent e) {
-				//Si se ha cerrado la ventana se comprueba el title
-				if (!frameJuego.getTitle().equals("Error")) {
-					//El juego se va a insertar
-					
-					String ruta = frameJuego.getTitle();
-					String  fileDefault = getClass().getClassLoader().getResource("./Juegos/default.txt").getPath();
-
-					btnPlay.setText("Finalizar Configuración");
-					btnPlay.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-                                                    try (Writer output = new BufferedWriter(new FileWriter(fileDefault, true))) { 
-                                                           String Nombre = TextNombre.getText();
-                                                           String Desarrollador=TextDesarrollador.getText();
-                                                           String Compania=TextCompany.getText();
-                                                           String Genero = TextGenero.getText();
-                                                           String Descripcion=TextDescripcion.getText();
-                                                           String imagen="/img/AddGameUnknown.png";
-                                                           if(Nombre.equals("") || Nombre.isEmpty() || Nombre.equals(" ")
-                                                                   ||Desarrollador.equals("") || Desarrollador.isEmpty() || Desarrollador.equals(" ")
-                                                                   ||Compania.equals("") || Compania.isEmpty() || Compania.equals(" ")
-                                                                   ||Descripcion.equals("") || Descripcion.isEmpty() || Descripcion.equals(" ")
-                                                                   ||Genero.equals("") || Genero.isEmpty() || Genero.equals(" "))
-                                                           {
-                                                                        //eL NOMBRE NO ESTA DEFINIDO
-									TextNombre.setBackground(Color.red);
-									TextNombre.setForeground(Color.white);
-                                                                        TextDesarrollador.setBackground(Color.red);
-									TextDesarrollador.setForeground(Color.white);
-                                                                        TextCompany.setBackground(Color.red);
-									TextCompany.setForeground(Color.white); 
-                                                                        TextDescripcion.setBackground(Color.red);
-									TextDescripcion.setForeground(Color.white);
-                                                                        TextGenero.setBackground(Color.red);
-									TextGenero.setForeground(Color.white);                                                                        
-                                                           }
-                                                           else
-                                                           {
-                                                                Juego j=new Juego(100,Nombre,Desarrollador,Compania,Genero,Descripcion,imagen);                                                                
-								output.append(Nombre + "," + ruta + "\n");
-                                                                output.close();
-                                                                rehacerBiblioteca(j);
-                                                                finalizar();                                                           
-                                                           }
-                                                    } catch (IOException ex) {
-                                                        Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
-                                                    }                                                   
-						}
-					});
-				}
-			}
-			//Funciones de ventana no usadas para nuestro problema
-			@Override
-			public void windowIconified(WindowEvent e) {}
-			@Override
-			public void windowOpened(WindowEvent e) {}
-			@Override
-			public void windowClosing(WindowEvent e) {}
-			@Override
-			public void windowDeiconified(WindowEvent e) {}
-			@Override
-			public void windowActivated(WindowEvent e) {}
-			@Override
-			public void windowDeactivated(WindowEvent e) {}
-		});
-
-	}
-        
-        private void rehacerBiblioteca(Juego j) throws FileNotFoundException, IOException
-        {
-            //TODO 1-LEer ficherusmenio de listado de juegos 2-Volvar al temporal 3-dflhjkasfdlhjk
-            
-            String file = getClass().getClassLoader().getResource("./Juegos/listado_juegos.txt").getPath();
-            file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
-            FileReader f = new FileReader(file);
-            BufferedReader b = new BufferedReader(f);
-            String cadena;           
-            //FICHERO AUXILIAR
-            String url = getClass().getClassLoader().getResource("./Juegos/").getPath();
-            url = url + "temp.txt";
-            url = url.substring(1, url.length());
-
-            File file2 = new File(url);
-            file2.createNewFile();
-
-            FileWriter fw = new FileWriter(file2);
-
-
-                    while ((cadena = b.readLine()) != null) {
-                  
-                           fw.append(cadena+"\n");
+    void AddJuego() {
+        AddJuego frameJuego = new AddJuego();
+        frameJuego.setVisible(true);
+        frameJuego.setTitle("Añadir juego " + TextNombre.getText());
+        frameJuego.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frameJuego.addWindowListener(new WindowListener() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                //Si se ha cerrado la ventana se comprueba el title
+                if (!frameJuego.getTitle().equals("Error")) {
+                    //El juego se va a insertar
+                    String url = null;
+                    try {
+                        String ruta = frameJuego.getTitle();
+                        url = new java.io.File(".").getCanonicalPath();
+                        url = url.replace("\\", "/");
+                        url = url + "/Juegos/default.txt";
+                        final String _url = url;
+                        btnPlay.setText("Finalizar Configuración");
+                        btnPlay.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                try (Writer output = new BufferedWriter(new FileWriter(_url, true))) {
+                                    String Nombre = TextNombre.getText();
+                                    String Desarrollador = TextDesarrollador.getText();
+                                    String Compania = TextCompany.getText();
+                                    String Genero = TextGenero.getText();
+                                    String Descripcion = TextDescripcion.getText();
+                                    String imagen = UrlImg.getText();
+                                    UrlImg.setEnabled(false);
+                                    if (Nombre.equals("") || Nombre.isEmpty() || Nombre.equals(" ")
+                                            || Desarrollador.equals("") || Desarrollador.isEmpty() || Desarrollador.equals(" ")
+                                            || Compania.equals("") || Compania.isEmpty() || Compania.equals(" ")
+                                            || Descripcion.equals("") || Descripcion.isEmpty() || Descripcion.equals(" ")
+                                            || Genero.equals("") || Genero.isEmpty() || Genero.equals(" ")) {
+                                        //eL NOMBRE NO ESTA DEFINIDO
+                                        TextNombre.setBackground(Color.red);
+                                        TextNombre.setForeground(Color.white);
+                                        TextDesarrollador.setBackground(Color.red);
+                                        TextDesarrollador.setForeground(Color.white);
+                                        TextCompany.setBackground(Color.red);
+                                        TextCompany.setForeground(Color.white);
+                                        TextDescripcion.setBackground(Color.red);
+                                        TextDescripcion.setForeground(Color.white);
+                                        TextGenero.setBackground(Color.red);
+                                        TextGenero.setForeground(Color.white);
+                                    } else {
+                                        Juego j = new Juego(100, Nombre, Desarrollador, Compania, Genero, Descripcion, imagen);
+                                        output.append(Nombre + "," + ruta + "\n");
+                                        output.close();
+                                        rehacerBiblioteca(j);
+                                        finalizar();
+                                    }
+                                } catch (IOException ex) {
+                                    Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        });
+                    } catch (IOException ex) {
+                        Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    fw.append(j.getNombre()+"\n");
-                    fw.append(j.getCompania()+"\n");
-                    fw.append(j.getDesarrollador()+"\n");
-                    fw.append(j.getTipo()+"\n");
-                    fw.append(j.getDescrip()+"\n");
-                    fw.append(j.getImagen());
-                    
-                    b.close();
-            fw.close();
+                }
+            }
 
-            File antiguo = new File(file);
-            antiguo.delete();
+            //Funciones de ventana no usadas para nuestro problema
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
 
-            File nuevo = new File(url);
-            boolean success = nuevo.renameTo(antiguo);
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
+    }
+
+    private void rehacerBiblioteca(Juego j) throws FileNotFoundException, IOException {
+        String file = new java.io.File(".").getCanonicalPath();
+        file = file.replace("\\", "/");
+        file = file + "/Juegos/listado_juegos.txt";
+
+        FileReader f = new FileReader(file);
+        BufferedReader b = new BufferedReader(f);
+        String cadena;
+        //FICHERO AUXILIAR
+        String url = new java.io.File(".").getCanonicalPath();
+        url = url.replace("\\", "/");
+        url = url + "/Juegos/temp.txt";
+
+        File file2 = new File(url);
+        file2.createNewFile();
+
+        FileWriter fw = new FileWriter(file2);
+
+        while ((cadena = b.readLine()) != null) {
+            fw.append(cadena + "\n");
         }
-        
+        if (j.getImagen().equals("/img/AddGameUnknown.png")) {
+            fw.append(j.getNombre() + "\n");
+            fw.append(j.getCompania() + "\n");
+            fw.append(j.getDesarrollador() + "\n");
+            fw.append(j.getTipo() + "\n");
+            fw.append(j.getDescrip() + "\n");
+            fw.append(j.getImagen());
+        }
+
+        b.close();
+        fw.close();
+
+        File antiguo = new File(file);
+        antiguo.delete();
+
+        File nuevo = new File(url);
+        boolean success = nuevo.renameTo(antiguo);
+    }
+
 	private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
-		// TODO add your handling code here:
-		if (play) {
-			try {
-				String url = getClass().getClassLoader().getResource("./dosBOX/DOSBoxPortable.exe").getPath();
-				url  = url + " " + _juego.getUrl();
-				url = url.substring(1, url.length());
-				url = url.replace("/", "\\");
-				Runtime.getRuntime().exec(url);
-				dispose();
-			} catch (IOException ioe) {
-				System.out.println (ioe);
-			}
-		}
+            // TODO add your handling code here:
+            if (play) {
+                try {
+                    String url = new java.io.File(".").getCanonicalPath();
+                    url = url + "/dosBOX/DOSBoxPortable.exe";
+                    url = url + " " + _juego.getUrl();
+                    url = url.replace("/", "\\");
+                    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    int dialogResult = JOptionPane.showConfirmDialog(this, "Puedes jugar en pantalla completa con Alt+Enter");
+                    if (dialogResult == JOptionPane.YES_OPTION) {
+                        Runtime.getRuntime().exec(url);
+                        dispose();
+                    }
+                } catch (IOException ioe) {
+                    System.out.println(ioe);
+                }
+            }
 	}//GEN-LAST:event_btnPlayActionPerformed
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-            
-            String nombreJuego=TextNombre.getText();
-            try {
-                borrarJuego(nombreJuego);
-            } catch (IOException ex) {
-                Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        String nombreJuego = TextNombre.getText();
+        try {
+            borrarJuego(nombreJuego);
+        } catch (IOException ex) {
+            Logger.getLogger(InfoJuego.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_btnDeleteMouseClicked
 
@@ -499,52 +526,43 @@ public class InfoJuego extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteMousePressed
 
-    private void borrarJuego(String nombreJuego) throws FileNotFoundException, IOException
-    {
+    private void borrarJuego(String nombreJuego) throws FileNotFoundException, IOException {
         //FICHERO INICIAL
-		String file = getClass().getClassLoader().getResource("./Juegos/default.txt").getPath();
-		file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
-		FileReader f = new FileReader(file);
-		BufferedReader b = new BufferedReader(f);
-		String cadena;
+        String file = new java.io.File(".").getCanonicalPath();
+        file = file.replace("\\", "/");
+        file = file + "/Juegos/default.txt";
+        FileReader f = new FileReader(file);
+        BufferedReader b = new BufferedReader(f);
+        String cadena;
 
-		//FICHERO AUXILIAR
+        //FICHERO AUXILIAR
+        String url = new java.io.File(".").getCanonicalPath();
+        url = url.replace("\\", "/");
+        url = url + "/Juegos/tempt.txt";
+        File file2 = new File(url);
+        file2.createNewFile();
 
-		String url = getClass().getClassLoader().getResource("./Juegos/").getPath();
-		url = url + "temp.txt";
-		url = url.substring(1, url.length());
+        FileWriter fw = new FileWriter(file2);
 
-		File file2 = new File(url);
-		file2.createNewFile();
+        String[] parts;
 
-		FileWriter fw = new FileWriter(file2);
-
-		String[] parts;
-                
-                while ((cadena = b.readLine()) != null) {
-                   parts=cadena.split(",");
-                   
-                   if(!parts[0].equals(nombreJuego))
-                   {
-                       fw.append(cadena);
-                   }
-                   
-                }
-                
-                b.close();
-		fw.close();
-
-		File antiguo = new File(file);
-		antiguo.delete();
-
-		File nuevo = new File(url);
-		boolean success = nuevo.renameTo(antiguo);
-                
+        while ((cadena = b.readLine()) != null) {
+            parts = cadena.split(",");
+            if (!parts[0].replaceAll("[^\\dA-Za-z() ]", "").equals(nombreJuego)) {
+                fw.append(cadena + "\n");
+            }
+        }
+        b.close();
+        fw.close();
+        File antiguo = new File(file);
+        antiguo.delete();
+        File nuevo = new File(url);
+        boolean success = nuevo.renameTo(antiguo);
     }
-    
+
     private void finalizar() {
-		this.dispose();
-	}
+        this.dispose();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -559,6 +577,7 @@ public class InfoJuego extends javax.swing.JFrame {
     private javax.swing.JTextArea TextDescripcion;
     private javax.swing.JTextField TextGenero;
     private javax.swing.JTextField TextNombre;
+    private javax.swing.JLabel UrlImg;
     private keeptoo.KButton btnCancel;
     private javax.swing.JLabel btnDelete;
     private keeptoo.KButton btnPlay;

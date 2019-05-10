@@ -14,10 +14,10 @@ public class Bienvenida extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Bienvenida() {   
+    public Bienvenida() {
         initComponents();
         this.pack();
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);
     }
 
     /**

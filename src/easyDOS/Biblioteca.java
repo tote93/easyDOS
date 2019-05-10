@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,11 +20,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.UIManager;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import easyDOS.Auxiliares;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Biblioteca extends javax.swing.JPanel {
 
     private ArrayList<Object> _listaJuegos = new ArrayList<>(); //Usamos un arrayList para almacenas las rutas de imagenes
     private final ArrayList<Object> _listaJuegosUsuario = new ArrayList<>(); //Usamos un arrayList para almacenas las rutas de imagenes de usuario
+    Auxiliares aux = new Auxiliares();
 
     /**
      * Creates new form Biblioteca2
@@ -68,14 +70,16 @@ public class Biblioteca extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     void crearBiblioteca() {
-        
-        setLayout(new java.awt.GridLayout((int)_listaJuegos.size() / 3, 4)); //Establecemos la rejilla a size/4, 4
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("./img/AddGameUnknown.png").getPath());
+
+        setLayout(new java.awt.GridLayout((int) _listaJuegos.size() / 3, 4)); //Establecemos la rejilla a size/4, 4
+        BufferedImage img = aux.loadImage("/img/AddGameUnknown.png");
+        ImageIcon icon = new ImageIcon(img);
+
         JLabel label = new JLabel(icon);
         Border border = label.getBorder();
         Border margin = new EmptyBorder(2, 2, 2, 2);
         label.setBorder(new CompoundBorder(border, margin));
-        label.setToolTipText("Crear mi propia plantilla."); 
+        label.setToolTipText("Crear mi propia plantilla.");
         label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         //Permite abrir la información del juego añadiendo un eventListener
         label.addMouseListener(new MouseAdapter() {
@@ -129,9 +133,11 @@ public class Biblioteca extends javax.swing.JPanel {
             }
         });
         this.add(label);
+
         for (int i = 0; i < _listaJuegos.size(); ++i) {
             Juego g = (Juego) _listaJuegos.get(i);
-            icon = new ImageIcon(getClass().getResource(g.getImagen()));
+            img = aux.loadImage(g.getImagen());
+            icon = new ImageIcon(img);
             label = new JLabel(icon);
             label.setBorder(new CompoundBorder(border, margin));
             label.setToolTipText("Plantilla para juego " + g.getNombre());
@@ -186,8 +192,8 @@ public class Biblioteca extends javax.swing.JPanel {
 
                     });
                 }
-            });            
-            this.add(label);                                
+            });
+            this.add(label);
 
         }
         removeDuplicates();
@@ -195,9 +201,12 @@ public class Biblioteca extends javax.swing.JPanel {
 
     void getMisJuegos() throws FileNotFoundException, IOException {
         setLayout(new java.awt.GridLayout((int) _listaJuegosUsuario.size() / 2, 4)); //Establecemos la rejilla a size/4, 4
+        ImageIcon icon;
+        BufferedImage img;
         for (int i = 0; i < _listaJuegosUsuario.size(); ++i) {
             Juego g = (Juego) _listaJuegosUsuario.get(i);
-            ImageIcon icon = new ImageIcon(getClass().getResource(g.getImagen()));
+            img = aux.loadImage(g.getImagen());
+            icon = new ImageIcon(img);
             JLabel label = new JLabel(icon);
             Border border = label.getBorder();
             Border margin = new EmptyBorder(2, 2, 2, 2);
@@ -270,16 +279,17 @@ public class Biblioteca extends javax.swing.JPanel {
     }
 
     void lectura_fichero() throws FileNotFoundException, IOException {
-        //Lectura del fichero de listado de juegos
-        String file = getClass().getClassLoader().getResource("./Juegos/listado_juegos.txt").getPath();
-        file = file.substring(1, file.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
+        //Lectura del fichero de listado de juegos        
+        String file = new java.io.File(".").getCanonicalPath();
+        file = file.replace("\\", "/");
+        file = file + "/Juegos/listado_juegos.txt";
 
         FileReader f = new FileReader(file);
         BufferedReader b = new BufferedReader(f);
         String cadena = b.readLine();
         int id = 0;
         while (cadena != null) {
-            String Nombre = cadena;
+            String Nombre = cadena.replaceAll("[^\\dA-Za-z() ]", "");
             String Compania = b.readLine();
             String Desarrollador = b.readLine();
             String Tipo = b.readLine();
@@ -293,13 +303,15 @@ public class Biblioteca extends javax.swing.JPanel {
         b.close();
 
         String[] division;
-        String NombreJuego, fileDefault = getClass().getClassLoader().getResource("./Juegos/default.txt").getPath();
-        fileDefault = fileDefault.substring(1, fileDefault.length()); //Eliminamos la /inicial que encontramos al obtener la ruta
+        String NombreJuego, fileDefault = new java.io.File(".").getCanonicalPath();
+        fileDefault = fileDefault.replace("\\", "/");
+        fileDefault = fileDefault + "/Juegos/default.txt";
+
         f = new FileReader(fileDefault);
         b = new BufferedReader(f);
         while ((NombreJuego = b.readLine()) != null) {
             division = NombreJuego.split(",");
-            int response = hasGame(division[0], _listaJuegos);
+            int response = hasGame(division[0].replaceAll("[^\\dA-Za-z() ]", ""), _listaJuegos);
             if (response >= 0) {
                 Juego game = (Juego) _listaJuegos.get(response);
                 game.setUrl(division[1]);
@@ -323,7 +335,7 @@ public class Biblioteca extends javax.swing.JPanel {
         _listaJuegos.clear();
         _listaJuegos = (ArrayList<Object>) _listaAux.clone();
     }
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
