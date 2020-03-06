@@ -101,7 +101,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
 
         btnAddJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/obtenerJuego.png"))); // NOI18N
-        btnAddJuego.setText("Añadir Plantilla");
+        btnAddJuego.setText("Add Template");
         btnAddJuego.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAddJuego.setkEndColor(new java.awt.Color(153, 0, 153));
         btnAddJuego.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -116,7 +116,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnMisJuegos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cd.png"))); // NOI18N
-        btnMisJuegos.setText("Mis Juegos");
+        btnMisJuegos.setText("My Games");
         btnMisJuegos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnMisJuegos.setkEndColor(new java.awt.Color(153, 0, 153));
         btnMisJuegos.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -131,7 +131,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnPreferencias1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/settings.png"))); // NOI18N
-        btnPreferencias1.setText("Preferencias");
+        btnPreferencias1.setText("Settings");
         btnPreferencias1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPreferencias1.setkEndColor(new java.awt.Color(153, 0, 153));
         btnPreferencias1.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -146,7 +146,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/out.png"))); // NOI18N
-        btnSalir.setText("Salir");
+        btnSalir.setText("Exit");
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);

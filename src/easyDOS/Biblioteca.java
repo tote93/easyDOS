@@ -24,7 +24,6 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import easyDOS.Auxiliares;
 
 /**
  *
@@ -79,7 +78,7 @@ public class Biblioteca extends javax.swing.JPanel {
         Border border = label.getBorder();
         Border margin = new EmptyBorder(2, 2, 2, 2);
         label.setBorder(new CompoundBorder(border, margin));
-        label.setToolTipText("Crear mi propia plantilla.");
+        label.setToolTipText("Create my own template.");
         label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         //Permite abrir la información del juego añadiendo un eventListener
         label.addMouseListener(new MouseAdapter() {
@@ -87,7 +86,7 @@ public class Biblioteca extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent me) {
                 InfoJuego frame = new InfoJuego(new Juego(), false);
                 frame.setVisible(true);
-                frame.setTitle("Plantilla por defecto");
+                frame.setTitle("Default Template");
                 frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 frame.addWindowListener(new WindowListener() {
                     @Override
@@ -140,7 +139,7 @@ public class Biblioteca extends javax.swing.JPanel {
             icon = new ImageIcon(img);
             label = new JLabel(icon);
             label.setBorder(new CompoundBorder(border, margin));
-            label.setToolTipText("Plantilla para juego " + g.getNombre());
+            label.setToolTipText("Template for game " + g.getNombre());
             //Permite abrir la información del juego añadiendo un eventListener
             label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             label.addMouseListener(new MouseAdapter() {
@@ -148,7 +147,7 @@ public class Biblioteca extends javax.swing.JPanel {
                 public void mouseClicked(MouseEvent me) {
                     InfoJuego frame = new InfoJuego(g, false);
                     frame.setVisible(true);
-                    frame.setTitle("Información " + g.getNombre());
+                    frame.setTitle("Information " + g.getNombre());
                     frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     frame.addWindowListener(new WindowListener() {
                         @Override
@@ -213,13 +212,13 @@ public class Biblioteca extends javax.swing.JPanel {
             label.setBorder(new CompoundBorder(border, margin));
             label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             //Permite abrir la información del juego añadiendo un eventListener
-            label.setToolTipText("Juego " + g.getNombre());
+            label.setToolTipText("Game " + g.getNombre());
             label.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent me) {
                     InfoJuego frame = new InfoJuego(g, true);
                     frame.setVisible(true);
-                    frame.setTitle("Información " + g.getNombre());
+                    frame.setTitle("Information " + g.getNombre());
                     frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     frame.addWindowListener(new WindowListener() {
                         @Override

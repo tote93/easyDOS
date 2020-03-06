@@ -34,7 +34,7 @@ public class preferencias extends javax.swing.JFrame {
         initComponents();
         this.pack();
         this.setLocationRelativeTo(null);
-        setTitle("Preferencias");
+        setTitle("Settings");
         kButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnAcceptChanges.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setResizable(false);
@@ -55,7 +55,7 @@ public class preferencias extends javax.swing.JFrame {
         File dir = new File(file);
         if (!dir.exists()) {
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(jPanel1);
-            JOptionPane.showMessageDialog(jPanel1, "No se han encontrado los archivos de configuración para DosBox, se ejecutarán las preferencias en modo lectura.");
+            JOptionPane.showMessageDialog(jPanel1, "The configuration files for DosBox were not found, the preferences will be executed in read mode.");
         } else {
 
             file = file + "Data/settings/";
@@ -211,14 +211,14 @@ public class preferencias extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
-        jLabel1.setText("Preferencias");
+        jLabel1.setText("Settings");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Pantalla Completa");
+        jLabel2.setText("Full Screen");
 
         btnFullScreenYes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnFullScreenYes.setText("Si");
+        btnFullScreenYes.setText("Yes");
         btnFullScreenYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFullScreenYesActionPerformed(evt);
@@ -235,7 +235,7 @@ public class preferencias extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Sensibilidad del ratón");
+        jLabel3.setText("Mouse sensibility");
 
         btnMouseSensivity50.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnMouseSensivity50.setText("50");
@@ -271,7 +271,7 @@ public class preferencias extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tipo de CPU");
+        jLabel4.setText("CPU");
 
         btnCpuAuto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCpuAuto.setText("Auto");
@@ -299,7 +299,7 @@ public class preferencias extends javax.swing.JFrame {
         });
 
         btnCpuDina.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCpuDina.setText("Dinámica");
+        btnCpuDina.setText("Dynamic");
         btnCpuDina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCpuDinaActionPerformed(evt);
@@ -308,7 +308,7 @@ public class preferencias extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Renderizado");
+        jLabel5.setText("Render");
 
         btnRenderOpen.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnRenderOpen.setText("OpenGL");
@@ -334,7 +334,7 @@ public class preferencias extends javax.swing.JFrame {
             }
         });
 
-        btnAcceptChanges.setText("Aceptar");
+        btnAcceptChanges.setText("Accept");
         btnAcceptChanges.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAcceptChanges.setkEndColor(new java.awt.Color(153, 0, 153));
         btnAcceptChanges.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -348,7 +348,7 @@ public class preferencias extends javax.swing.JFrame {
             }
         });
 
-        kButton1.setText("Cancelar");
+        kButton1.setText("Cancel");
         kButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         kButton1.setkEndColor(new java.awt.Color(153, 0, 153));
         kButton1.setkHoverEndColor(new java.awt.Color(153, 153, 255));

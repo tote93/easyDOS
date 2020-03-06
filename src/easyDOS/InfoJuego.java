@@ -22,8 +22,6 @@ import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import easyDOS.Auxiliares;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -69,7 +67,7 @@ public class InfoJuego extends javax.swing.JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         if (flag) {
-            btnPlay.setText("Jugar");
+            btnPlay.setText("Play");
             btnPlay.setActionCommand("Play");
             play = true;
             _juego = g;
@@ -78,7 +76,7 @@ public class InfoJuego extends javax.swing.JFrame {
             TextDescripcion.setEditable(false);
             TextDescripcion.setEnabled(false);
         } else {
-            btnPlay.setText("Añadir a Mis Juegos");
+            btnPlay.setText("Add to my games");
             btnPlay.setActionCommand("Add");
             play = false;
             btnDelete.setVisible(false);
@@ -93,7 +91,7 @@ public class InfoJuego extends javax.swing.JFrame {
             TextDesarrollador.setEditable(true);
             TextDescripcion.setEditable(true);
             TextNombre.setEditable(true);
-            btnPlay.setText("Añadir nuevo Juego");
+            btnPlay.setText("Add New Game");
             btnPlay.setActionCommand("AddNuevo");
             btnPlay.setVisible(true);
             btnDelete.setVisible(false);
@@ -139,19 +137,19 @@ public class InfoJuego extends javax.swing.JFrame {
 
         LNombre.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         LNombre.setForeground(new java.awt.Color(255, 255, 255));
-        LNombre.setText("Nombre: ");
+        LNombre.setText("Name:");
 
         LCompany.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         LCompany.setForeground(new java.awt.Color(255, 255, 255));
-        LCompany.setText("Compañia:");
+        LCompany.setText("Company:");
 
         LDesarrollador.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         LDesarrollador.setForeground(new java.awt.Color(255, 255, 255));
-        LDesarrollador.setText("Desarrollador:");
+        LDesarrollador.setText("Developer:");
 
         LDescripcion.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         LDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        LDescripcion.setText("Descripción");
+        LDescripcion.setText("Description");
 
         TextNombre.setEditable(false);
         TextNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -174,6 +172,7 @@ public class InfoJuego extends javax.swing.JFrame {
         jScrollPane2.setViewportView(TextDescripcion);
 
         btnPlay.setText("Jugar");
+        btnPlay.setActionCommand("Play");
         btnPlay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPlay.setkEndColor(new java.awt.Color(153, 0, 153));
         btnPlay.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -192,7 +191,7 @@ public class InfoJuego extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setText("Cancelar");
+        btnCancel.setText("Cancel");
         btnCancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCancel.setkEndColor(new java.awt.Color(153, 0, 153));
         btnCancel.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -209,8 +208,8 @@ public class InfoJuego extends javax.swing.JFrame {
         btnDelete.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-eliminar-32.png"))); // NOI18N
-        btnDelete.setText("Eliminar");
-        btnDelete.setToolTipText("Eliminar este juego");
+        btnDelete.setText("Delete");
+        btnDelete.setToolTipText("Delete this game");
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
@@ -222,7 +221,7 @@ public class InfoJuego extends javax.swing.JFrame {
 
         LDesarrollador1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         LDesarrollador1.setForeground(new java.awt.Color(255, 255, 255));
-        LDesarrollador1.setText("Género:");
+        LDesarrollador1.setText("Gender:");
 
         TextGenero.setEditable(false);
         TextGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -258,7 +257,7 @@ public class InfoJuego extends javax.swing.JFrame {
                                     .addComponent(TextDesarrollador, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(Caratula, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(LDescripcion)
@@ -346,14 +345,14 @@ public class InfoJuego extends javax.swing.JFrame {
             // TODO add your handling code here:
             String action = btnPlay.getText();
             switch (action) {
-                case "Añadir nuevo Juego":
+                case "Add New Game":
                     AddJuego();
                     break;
                 case "Close":
                     this.dispose();
-                case "Jugar":
+                case "Play":
                     break;
-                case "Añadir a Mis Juegos":
+                case "Add to my games":
                     AddJuego();
                     break;
             }
@@ -361,7 +360,7 @@ public class InfoJuego extends javax.swing.JFrame {
     void AddJuego() {
         AddJuego frameJuego = new AddJuego();
         frameJuego.setVisible(true);
-        frameJuego.setTitle("Añadir juego " + TextNombre.getText());
+        frameJuego.setTitle("Add game " + TextNombre.getText());
         frameJuego.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frameJuego.addWindowListener(new WindowListener() {
             @Override
@@ -376,7 +375,7 @@ public class InfoJuego extends javax.swing.JFrame {
                         url = url.replace("\\", "/");
                         url = url + "/Juegos/default.txt";
                         final String _url = url;
-                        btnPlay.setText("Finalizar Configuración");
+                        btnPlay.setText("Finish Configuration");
                         btnPlay.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -500,7 +499,7 @@ public class InfoJuego extends javax.swing.JFrame {
                     url = url + " " + _juego.getUrl();
                     url = url.replace("/", "\\");
                     JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                    int dialogResult = JOptionPane.showConfirmDialog(this, "Puedes jugar en pantalla completa con Alt+Enter");
+                    int dialogResult = JOptionPane.showConfirmDialog(this, "You can play in full screen with Alt + Enter");
                     if (dialogResult == JOptionPane.YES_OPTION) {
                         Runtime.getRuntime().exec(url);
                         dispose();

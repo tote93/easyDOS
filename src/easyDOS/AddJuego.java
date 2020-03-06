@@ -39,7 +39,7 @@ public class AddJuego extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         modifyFile();
-        btnAceptPath.setText("Añadir fichero ejecutable");
+        btnAceptPath.setText("Add exe file");
         BufferedImage img = aux.loadImage("/img/exe.png");
         ImageIcon icon = new ImageIcon(img);
         btnAceptPath.setIcon(icon);
@@ -75,7 +75,7 @@ public class AddJuego extends javax.swing.JFrame {
         getContentPane().add(dragZone, java.awt.BorderLayout.CENTER);
 
         btnAceptPath.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Aceptar.png"))); // NOI18N
-        btnAceptPath.setText("   Aceptar");
+        btnAceptPath.setText("   Accept");
         btnAceptPath.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAceptPath.setkEndColor(new java.awt.Color(153, 0, 153));
         btnAceptPath.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -97,7 +97,7 @@ public class AddJuego extends javax.swing.JFrame {
         getContentPane().add(btnAceptPath, java.awt.BorderLayout.PAGE_END);
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
-        btnSearch.setText("   Examinar");
+        btnSearch.setText("   Search");
         btnSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSearch.setkEndColor(new java.awt.Color(153, 0, 153));
         btnSearch.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -124,7 +124,7 @@ public class AddJuego extends javax.swing.JFrame {
 	private void btnAceptPathMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptPathMouseClicked
             // TODO add your handling code here:
             String action = btnAceptPath.getText();
-            if (action.equals("Aceptar")) {
+            if (action.equals("Accept")) {
                 this.setTitle(_urlJuego);
                 this.dispose();
             }
@@ -158,15 +158,15 @@ public class AddJuego extends javax.swing.JFrame {
             BufferedImage img = aux.loadImage("/img/validate.png");
             ImageIcon validate = new ImageIcon(img);
             dragZone.setIcon(validate);
-            btnAceptPath.setText("Aceptar");
+            btnAceptPath.setText("Accept");
             _urlJuego = f.toString();
             _urlJuego = _urlJuego.replace('\\', '/');
             BufferedImage aceptar = aux.loadImage("/img/Aceptar.png");
             ImageIcon icon = new ImageIcon(aceptar);
             btnAceptPath.setIcon(icon);
-            btnAceptPath.setActionCommand("Validar");
+            btnAceptPath.setActionCommand("Validate");
         } else {
-            btnAceptPath.setText("Ejecutable no Encontrado");
+            btnAceptPath.setText("Exe not found");
             BufferedImage img = aux.loadImage("/img/notExe.png");
             ImageIcon validate = new ImageIcon(img);
             dragZone.setIcon(validate);

@@ -84,7 +84,7 @@ public class Auxiliares {
 
         File file2 = new File(url);
 
-        String texto = "   Doom (1993)\nID Software\nJohn Romero\nShooter\nViaja al infierno acribillando a balazos a todos los demonios que se pongan en tu camino. Uno de los juegos mas influyentes en su genero y un clasico imprescindible.\n/img/doomcover.jpg\n";
+        String texto = "Doom (1993)\nID Software\nJohn Romero\nShooter\nViaja al infierno acribillando a balazos a todos los demonios que se pongan en tu camino. Uno de los juegos mas influyentes en su genero y un clasico imprescindible.\n/img/doomcover.jpg\n";
         texto = texto + "﻿System Shock (1994)\nLooking Glass Studios\nWarren Spector\nAventura\nPionero en el genero CyberPunk, System Shock fue la clave para todos los juegos que combinan el RPG y la accion.\n/img/systemshockcover.jpg\n";
         texto = texto + "﻿Monkey Island (1990)\nLucas Arts\nRon Gilbert\nAventura Grafica\nAcompaña a Guybrush Threepwood en su aventura para convertirse en el pirata mas temible de todos los tiempos.\n/img/monkeyislandcover.jpg\n";
         texto = texto + "﻿Wolfenstein 3D (1991)\nID Software\nJohn Romero\nShooter\nEl juego que inicio la fiebre de los First Person Shooter en elos años 90. A dia de hoy sigue siendo tan adictivo y divertido como en su momento.\n/img/wolfenstein3dcover.jpg\n";

@@ -46,14 +46,14 @@ public class Bienvenida extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Bienvenido a EasyDOS");
+        jLabel2.setText("Welcome to EasyDOS");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("EasyDOS permite configurar y emular tus juegos de MS-DOS favoritos");
+        jLabel3.setText("EasyDOS allows you to configure and emulate your favorite MS-DOS games");
         jLabel3.setToolTipText("");
 
-        kButton1.setText("Entrar");
+        kButton1.setText("Enter");
         kButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         kButton1.setkEndColor(new java.awt.Color(153, 0, 153));
         kButton1.setkHoverEndColor(new java.awt.Color(153, 153, 255));
@@ -77,15 +77,15 @@ public class Bienvenida extends javax.swing.JFrame {
                         .addGap(174, 174, 174)
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(303, 303, 303)
                         .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(342, 342, 342)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
