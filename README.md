@@ -27,10 +27,6 @@ To do this, the executable game must be available.
 	* There are a catalog with games, which only needs executable file game to play.
 	* Modify preferences of the program
 	
-                
-# What toy problems?
-+ Knapsack Problem
-+ Function Optimization
 
 # Libraries
     * KControls
