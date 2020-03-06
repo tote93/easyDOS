@@ -1,4 +1,4 @@
-# Metaheuristics
+# easyDOS
 Program developed in Java language (Swing), which allows to create and manage a library of games for ms-dos.
 * The program bases its functioning in dosBOX emulator:
 	* DOSBox is a DOS-emulator that uses the SDL-library which makes DOSBox very easy to port to different platforms. DOSBox has already been ported to many different platforms, such as Windows, BeOS, Linux, MacOS X...  
@@ -35,3 +35,6 @@ To do this, the executable game must be available.
 # Libraries
     * KControls
     * beansbinding
+# Developed
+    * José Luis Gordillo Relaño <i62gorej@uco.es>
+    * Carlos de la Barrera Pérez <i12bapec@uco.es>
