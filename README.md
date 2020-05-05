@@ -26,11 +26,28 @@ To do this, the executable game must be available.
 	* Modify existing game
 	* There are a catalog with games, which only needs executable file game to play.
 	* Modify preferences of the program
-	
+# Project Images
+EasyDOS Welcome Message:
+![alt tag](https://i.imgur.com/8bovNXF.png)
+
+EasyDos Main Interface and option panel:
+![alt tag](https://i.imgur.com/aY1Wyky.png)
+
+Add Template section, where you can add a pre-instaled configuration of the game:
+![alt tag](https://i.imgur.com/bUWnJFK.png)
+
+All these game have their own features:
+![alt tag](https://i.imgur.com/7MNyNCF.png)
+
+When you click on Add to my games, a new window will be opened, where you have to add the ".exe" file of the game:
+![alt tag](https://i.imgur.com/2Qcqo2G.png)
+
+If everything It is OK, the game should be in "My Games" section, then It is ready to be played:
+![alt tag](https://i.imgur.com/fADiT2G.png)
 
 # Libraries
     * KControls
     * beansbinding
-# Developed
+# Developed in 2018 by:
     * José Luis Gordillo Relaño <i62gorej@uco.es>
     * Carlos de la Barrera Pérez <i12bapec@uco.es>
