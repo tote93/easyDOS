@@ -1,7 +1,7 @@
 # easyDOS
 Program developed in Java language (Swing), which allows to create and manage a library of games for ms-dos.
-* The program bases its functioning in dosBOX emulator:
-	* DOSBox is a DOS-emulator that uses the SDL-library which makes DOSBox very easy to port to different platforms. DOSBox has already been ported to many different platforms, such as Windows, BeOS, Linux, MacOS X...  
+* The program bases its functioning in dosBOX emulator https://www.dosbox.com:
+	* DOSBox is a DOS-emulator that uses the SDL-library which makes DOSBox very easy to port to different platforms. DOSBox has already been ported to many different platforms, such as Windows, BeOS, Linux, MacOS X.
 	* DOSBox also emulates CPU:286/386 realmode/protected mode, Directory FileSystem/XMS/EMS, Tandy/Hercules/CGA/EGA/VGA/VESA graphics, a SoundBlaster/Gravis Ultra Sound card for excellent sound compatibility with older games...  
 	* DOSBox is totally free of charge and Open Source.
 
